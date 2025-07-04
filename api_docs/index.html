@@ -1,0 +1,1230 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+        <link rel="canonical" href="https://mydomain.org/mysite/api_docs/">
+      
+      
+        <link rel="prev" href="..">
+      
+      
+        <link rel="next" href="../sdk_docs/">
+      
+      
+      <link rel="icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.15">
+    
+    
+      
+        <title>TaskFlow API Documentation - My Docs</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.342714a4.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    <body dir="ltr">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#taskflow-api-documentation" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href=".." title="My Docs" class="md-header__button md-logo" aria-label="My Docs" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            My Docs
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              TaskFlow API Documentation
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="My Docs" class="md-nav__button md-logo" aria-label="My Docs" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    My Docs
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Welcome to MkDocs
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    TaskFlow API Documentation
+    
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    TaskFlow API Documentation
+    
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#overview" class="md-nav__link">
+    <span class="md-ellipsis">
+      Overview
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#base-url" class="md-nav__link">
+    <span class="md-ellipsis">
+      Base URL
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#authentication" class="md-nav__link">
+    <span class="md-ellipsis">
+      Authentication
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#response-format" class="md-nav__link">
+    <span class="md-ellipsis">
+      Response Format
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Response Format">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#success-response" class="md-nav__link">
+    <span class="md-ellipsis">
+      Success Response
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#error-response" class="md-nav__link">
+    <span class="md-ellipsis">
+      Error Response
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#rate-limiting" class="md-nav__link">
+    <span class="md-ellipsis">
+      Rate Limiting
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#endpoints" class="md-nav__link">
+    <span class="md-ellipsis">
+      Endpoints
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Endpoints">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#projects" class="md-nav__link">
+    <span class="md-ellipsis">
+      Projects
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Projects">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#get-all-projects" class="md-nav__link">
+    <span class="md-ellipsis">
+      Get All Projects
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#create-project" class="md-nav__link">
+    <span class="md-ellipsis">
+      Create Project
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#get-project" class="md-nav__link">
+    <span class="md-ellipsis">
+      Get Project
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#tasks" class="md-nav__link">
+    <span class="md-ellipsis">
+      Tasks
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Tasks">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#get-all-tasks" class="md-nav__link">
+    <span class="md-ellipsis">
+      Get All Tasks
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#create-task" class="md-nav__link">
+    <span class="md-ellipsis">
+      Create Task
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#update-task" class="md-nav__link">
+    <span class="md-ellipsis">
+      Update Task
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#users" class="md-nav__link">
+    <span class="md-ellipsis">
+      Users
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Users">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#get-current-user" class="md-nav__link">
+    <span class="md-ellipsis">
+      Get Current User
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#error-codes" class="md-nav__link">
+    <span class="md-ellipsis">
+      Error Codes
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#webhooks" class="md-nav__link">
+    <span class="md-ellipsis">
+      Webhooks
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#sdk" class="md-nav__link">
+    <span class="md-ellipsis">
+      SDK 및 도구
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      지원
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../sdk_docs/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    TaskFlow JavaScript SDK
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#overview" class="md-nav__link">
+    <span class="md-ellipsis">
+      Overview
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#base-url" class="md-nav__link">
+    <span class="md-ellipsis">
+      Base URL
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#authentication" class="md-nav__link">
+    <span class="md-ellipsis">
+      Authentication
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#response-format" class="md-nav__link">
+    <span class="md-ellipsis">
+      Response Format
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Response Format">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#success-response" class="md-nav__link">
+    <span class="md-ellipsis">
+      Success Response
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#error-response" class="md-nav__link">
+    <span class="md-ellipsis">
+      Error Response
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#rate-limiting" class="md-nav__link">
+    <span class="md-ellipsis">
+      Rate Limiting
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#endpoints" class="md-nav__link">
+    <span class="md-ellipsis">
+      Endpoints
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Endpoints">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#projects" class="md-nav__link">
+    <span class="md-ellipsis">
+      Projects
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Projects">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#get-all-projects" class="md-nav__link">
+    <span class="md-ellipsis">
+      Get All Projects
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#create-project" class="md-nav__link">
+    <span class="md-ellipsis">
+      Create Project
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#get-project" class="md-nav__link">
+    <span class="md-ellipsis">
+      Get Project
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#tasks" class="md-nav__link">
+    <span class="md-ellipsis">
+      Tasks
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Tasks">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#get-all-tasks" class="md-nav__link">
+    <span class="md-ellipsis">
+      Get All Tasks
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#create-task" class="md-nav__link">
+    <span class="md-ellipsis">
+      Create Task
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#update-task" class="md-nav__link">
+    <span class="md-ellipsis">
+      Update Task
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#users" class="md-nav__link">
+    <span class="md-ellipsis">
+      Users
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Users">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#get-current-user" class="md-nav__link">
+    <span class="md-ellipsis">
+      Get Current User
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#error-codes" class="md-nav__link">
+    <span class="md-ellipsis">
+      Error Codes
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#webhooks" class="md-nav__link">
+    <span class="md-ellipsis">
+      Webhooks
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#sdk" class="md-nav__link">
+    <span class="md-ellipsis">
+      SDK 및 도구
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      지원
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="taskflow-api-documentation">TaskFlow API Documentation</h1>
+<h2 id="overview">Overview</h2>
+<p>TaskFlow API는 작업 관리 시스템을 위한 RESTful API입니다. 이 API를 통해 프로젝트, 작업, 사용자를 관리할 수 있습니다.</p>
+<h2 id="base-url">Base URL</h2>
+<pre><code>https://api.taskflow.com/v1
+</code></pre>
+<h2 id="authentication">Authentication</h2>
+<p>모든 API 요청은 Bearer 토큰 인증을 사용합니다.</p>
+<pre><code class="language-http">Authorization: Bearer YOUR_API_TOKEN
+</code></pre>
+<h2 id="response-format">Response Format</h2>
+<p>모든 응답은 JSON 형식으로 제공됩니다.</p>
+<h3 id="success-response">Success Response</h3>
+<pre><code class="language-json">{
+  &quot;success&quot;: true,
+  &quot;data&quot;: {
+    // 응답 데이터
+  },
+  &quot;meta&quot;: {
+    &quot;timestamp&quot;: &quot;2025-07-04T12:00:00Z&quot;,
+    &quot;version&quot;: &quot;1.0&quot;
+  }
+}
+</code></pre>
+<h3 id="error-response">Error Response</h3>
+<pre><code class="language-json">{
+  &quot;success&quot;: false,
+  &quot;error&quot;: {
+    &quot;code&quot;: &quot;VALIDATION_ERROR&quot;,
+    &quot;message&quot;: &quot;요청 데이터가 올바르지 않습니다.&quot;,
+    &quot;details&quot;: [
+      {
+        &quot;field&quot;: &quot;title&quot;,
+        &quot;message&quot;: &quot;제목은 필수 항목입니다.&quot;
+      }
+    ]
+  }
+}
+</code></pre>
+<h2 id="rate-limiting">Rate Limiting</h2>
+<p>API는 다음과 같은 속도 제한이 있습니다:</p>
+<ul>
+<li><strong>일반 요청</strong>: 분당 100회</li>
+<li><strong>인증 요청</strong>: 분당 10회</li>
+</ul>
+<p>속도 제한에 도달하면 <code>429 Too Many Requests</code> 상태 코드가 반환됩니다.</p>
+<h2 id="endpoints">Endpoints</h2>
+<h3 id="projects">Projects</h3>
+<h4 id="get-all-projects">Get All Projects</h4>
+<p>프로젝트 목록을 조회합니다.</p>
+<pre><code class="language-http">GET /projects
+</code></pre>
+<p><strong>Query Parameters</strong></p>
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>page</code></td>
+<td>integer</td>
+<td>페이지 번호 (기본값: 1)</td>
+</tr>
+<tr>
+<td><code>limit</code></td>
+<td>integer</td>
+<td>페이지당 항목 수 (기본값: 20, 최대: 100)</td>
+</tr>
+<tr>
+<td><code>status</code></td>
+<td>string</td>
+<td>프로젝트 상태 (<code>active</code>, <code>completed</code>, <code>archived</code>)</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Response</strong></p>
+<pre><code class="language-json">{
+  &quot;success&quot;: true,
+  &quot;data&quot;: {
+    &quot;projects&quot;: [
+      {
+        &quot;id&quot;: &quot;proj_123&quot;,
+        &quot;title&quot;: &quot;웹사이트 리뉴얼&quot;,
+        &quot;description&quot;: &quot;회사 웹사이트 전면 리뉴얼 프로젝트&quot;,
+        &quot;status&quot;: &quot;active&quot;,
+        &quot;created_at&quot;: &quot;2025-07-01T10:00:00Z&quot;,
+        &quot;updated_at&quot;: &quot;2025-07-04T15:30:00Z&quot;,
+        &quot;owner&quot;: {
+          &quot;id&quot;: &quot;user_456&quot;,
+          &quot;name&quot;: &quot;김철수&quot;,
+          &quot;email&quot;: &quot;kimcs@example.com&quot;
+        },
+        &quot;tasks_count&quot;: 12,
+        &quot;progress&quot;: 65
+      }
+    ],
+    &quot;pagination&quot;: {
+      &quot;page&quot;: 1,
+      &quot;limit&quot;: 20,
+      &quot;total&quot;: 45,
+      &quot;total_pages&quot;: 3
+    }
+  }
+}
+</code></pre>
+<h4 id="create-project">Create Project</h4>
+<p>새 프로젝트를 생성합니다.</p>
+<pre><code class="language-http">POST /projects
+</code></pre>
+<p><strong>Request Body</strong></p>
+<pre><code class="language-json">{
+  &quot;title&quot;: &quot;새 프로젝트&quot;,
+  &quot;description&quot;: &quot;프로젝트 설명&quot;,
+  &quot;status&quot;: &quot;active&quot;,
+  &quot;owner_id&quot;: &quot;user_456&quot;,
+  &quot;due_date&quot;: &quot;2025-12-31T23:59:59Z&quot;
+}
+</code></pre>
+<p><strong>Response</strong></p>
+<pre><code class="language-json">{
+  &quot;success&quot;: true,
+  &quot;data&quot;: {
+    &quot;project&quot;: {
+      &quot;id&quot;: &quot;proj_789&quot;,
+      &quot;title&quot;: &quot;새 프로젝트&quot;,
+      &quot;description&quot;: &quot;프로젝트 설명&quot;,
+      &quot;status&quot;: &quot;active&quot;,
+      &quot;created_at&quot;: &quot;2025-07-04T16:00:00Z&quot;,
+      &quot;updated_at&quot;: &quot;2025-07-04T16:00:00Z&quot;,
+      &quot;owner&quot;: {
+        &quot;id&quot;: &quot;user_456&quot;,
+        &quot;name&quot;: &quot;김철수&quot;,
+        &quot;email&quot;: &quot;kimcs@example.com&quot;
+      },
+      &quot;tasks_count&quot;: 0,
+      &quot;progress&quot;: 0
+    }
+  }
+}
+</code></pre>
+<h4 id="get-project">Get Project</h4>
+<p>특정 프로젝트의 상세 정보를 조회합니다.</p>
+<pre><code class="language-http">GET /projects/{project_id}
+</code></pre>
+<p><strong>Path Parameters</strong></p>
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>project_id</code></td>
+<td>string</td>
+<td>프로젝트 ID</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Response</strong></p>
+<pre><code class="language-json">{
+  &quot;success&quot;: true,
+  &quot;data&quot;: {
+    &quot;project&quot;: {
+      &quot;id&quot;: &quot;proj_123&quot;,
+      &quot;title&quot;: &quot;웹사이트 리뉴얼&quot;,
+      &quot;description&quot;: &quot;회사 웹사이트 전면 리뉴얼 프로젝트&quot;,
+      &quot;status&quot;: &quot;active&quot;,
+      &quot;created_at&quot;: &quot;2025-07-01T10:00:00Z&quot;,
+      &quot;updated_at&quot;: &quot;2025-07-04T15:30:00Z&quot;,
+      &quot;owner&quot;: {
+        &quot;id&quot;: &quot;user_456&quot;,
+        &quot;name&quot;: &quot;김철수&quot;,
+        &quot;email&quot;: &quot;kimcs@example.com&quot;
+      },
+      &quot;tasks&quot;: [
+        {
+          &quot;id&quot;: &quot;task_101&quot;,
+          &quot;title&quot;: &quot;UI 디자인&quot;,
+          &quot;status&quot;: &quot;completed&quot;,
+          &quot;assignee&quot;: {
+            &quot;id&quot;: &quot;user_789&quot;,
+            &quot;name&quot;: &quot;이영희&quot;
+          }
+        }
+      ],
+      &quot;progress&quot;: 65
+    }
+  }
+}
+</code></pre>
+<h3 id="tasks">Tasks</h3>
+<h4 id="get-all-tasks">Get All Tasks</h4>
+<p>작업 목록을 조회합니다.</p>
+<pre><code class="language-http">GET /tasks
+</code></pre>
+<p><strong>Query Parameters</strong></p>
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>project_id</code></td>
+<td>string</td>
+<td>프로젝트 ID로 필터링</td>
+</tr>
+<tr>
+<td><code>assignee_id</code></td>
+<td>string</td>
+<td>담당자 ID로 필터링</td>
+</tr>
+<tr>
+<td><code>status</code></td>
+<td>string</td>
+<td>작업 상태 (<code>todo</code>, <code>in_progress</code>, <code>completed</code>)</td>
+</tr>
+<tr>
+<td><code>page</code></td>
+<td>integer</td>
+<td>페이지 번호</td>
+</tr>
+<tr>
+<td><code>limit</code></td>
+<td>integer</td>
+<td>페이지당 항목 수</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Response</strong></p>
+<pre><code class="language-json">{
+  &quot;success&quot;: true,
+  &quot;data&quot;: {
+    &quot;tasks&quot;: [
+      {
+        &quot;id&quot;: &quot;task_101&quot;,
+        &quot;title&quot;: &quot;UI 디자인&quot;,
+        &quot;description&quot;: &quot;메인 페이지 UI 디자인 작업&quot;,
+        &quot;status&quot;: &quot;completed&quot;,
+        &quot;priority&quot;: &quot;high&quot;,
+        &quot;created_at&quot;: &quot;2025-07-01T10:00:00Z&quot;,
+        &quot;updated_at&quot;: &quot;2025-07-03T14:30:00Z&quot;,
+        &quot;due_date&quot;: &quot;2025-07-05T18:00:00Z&quot;,
+        &quot;project&quot;: {
+          &quot;id&quot;: &quot;proj_123&quot;,
+          &quot;title&quot;: &quot;웹사이트 리뉴얼&quot;
+        },
+        &quot;assignee&quot;: {
+          &quot;id&quot;: &quot;user_789&quot;,
+          &quot;name&quot;: &quot;이영희&quot;,
+          &quot;email&quot;: &quot;leeyh@example.com&quot;
+        }
+      }
+    ]
+  }
+}
+</code></pre>
+<h4 id="create-task">Create Task</h4>
+<p>새 작업을 생성합니다.</p>
+<pre><code class="language-http">POST /tasks
+</code></pre>
+<p><strong>Request Body</strong></p>
+<pre><code class="language-json">{
+  &quot;title&quot;: &quot;새 작업&quot;,
+  &quot;description&quot;: &quot;작업 설명&quot;,
+  &quot;project_id&quot;: &quot;proj_123&quot;,
+  &quot;assignee_id&quot;: &quot;user_789&quot;,
+  &quot;priority&quot;: &quot;medium&quot;,
+  &quot;due_date&quot;: &quot;2025-07-10T18:00:00Z&quot;
+}
+</code></pre>
+<h4 id="update-task">Update Task</h4>
+<p>작업을 수정합니다.</p>
+<pre><code class="language-http">PUT /tasks/{task_id}
+</code></pre>
+<p><strong>Request Body</strong></p>
+<pre><code class="language-json">{
+  &quot;title&quot;: &quot;수정된 작업 제목&quot;,
+  &quot;status&quot;: &quot;in_progress&quot;,
+  &quot;priority&quot;: &quot;high&quot;
+}
+</code></pre>
+<h3 id="users">Users</h3>
+<h4 id="get-current-user">Get Current User</h4>
+<p>현재 인증된 사용자의 정보를 조회합니다.</p>
+<pre><code class="language-http">GET /users/me
+</code></pre>
+<p><strong>Response</strong></p>
+<pre><code class="language-json">{
+  &quot;success&quot;: true,
+  &quot;data&quot;: {
+    &quot;user&quot;: {
+      &quot;id&quot;: &quot;user_456&quot;,
+      &quot;name&quot;: &quot;김철수&quot;,
+      &quot;email&quot;: &quot;kimcs@example.com&quot;,
+      &quot;role&quot;: &quot;admin&quot;,
+      &quot;created_at&quot;: &quot;2025-06-01T09:00:00Z&quot;,
+      &quot;last_login&quot;: &quot;2025-07-04T08:30:00Z&quot;
+    }
+  }
+}
+</code></pre>
+<h2 id="error-codes">Error Codes</h2>
+<table>
+<thead>
+<tr>
+<th>Code</th>
+<th>HTTP Status</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>VALIDATION_ERROR</code></td>
+<td>400</td>
+<td>요청 데이터 검증 실패</td>
+</tr>
+<tr>
+<td><code>UNAUTHORIZED</code></td>
+<td>401</td>
+<td>인증 토큰이 없거나 유효하지 않음</td>
+</tr>
+<tr>
+<td><code>FORBIDDEN</code></td>
+<td>403</td>
+<td>접근 권한이 없음</td>
+</tr>
+<tr>
+<td><code>NOT_FOUND</code></td>
+<td>404</td>
+<td>요청한 리소스를 찾을 수 없음</td>
+</tr>
+<tr>
+<td><code>RATE_LIMIT_EXCEEDED</code></td>
+<td>429</td>
+<td>속도 제한 초과</td>
+</tr>
+<tr>
+<td><code>INTERNAL_ERROR</code></td>
+<td>500</td>
+<td>서버 내부 오류</td>
+</tr>
+</tbody>
+</table>
+<h2 id="webhooks">Webhooks</h2>
+<p>TaskFlow API는 다음 이벤트에 대한 웹훅을 지원합니다:</p>
+<ul>
+<li><code>project.created</code></li>
+<li><code>project.updated</code></li>
+<li><code>task.created</code></li>
+<li><code>task.updated</code></li>
+<li><code>task.completed</code></li>
+</ul>
+<p>웹훅 설정은 대시보드에서 관리할 수 있습니다.</p>
+<h2 id="sdk">SDK 및 도구</h2>
+<ul>
+<li><a href="https://github.com/taskflow/js-sdk">JavaScript SDK</a></li>
+<li><a href="https://github.com/taskflow/python-sdk">Python SDK</a></li>
+<li><a href="https://documenter.getpostman.com/view/taskflow">Postman Collection</a></li>
+</ul>
+<h2 id="_1">지원</h2>
+<p>문의사항이 있으시면 다음 채널을 통해 연락해주세요:</p>
+<ul>
+<li>이메일: support@taskflow.com</li>
+<li>문서: https://docs.taskflow.com</li>
+<li>GitHub Issues: https://github.com/taskflow/api/issues</li>
+</ul>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      <script id="__config" type="application/json">{"base": "..", "features": [], "search": "../assets/javascripts/workers/search.d50fe291.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.56ea9cef.min.js"></script>
+      
+    
+  </body>
+</html>
