@@ -1,4 +1,26 @@
-site_name: My Docs
-site_url: https://mydomain.org/mysite
+site_name: LiveStyler Documentation
+site_description: Documentation for LiveStyler, a tool for live styling web applications.
+site_author: dob Studio Inc.
+site_version: 1.0
+site_url: https://dob-world.github.io/livestyler-docs
 theme:
   name: material
+
+nav:
+  - Home: index.md
+  - SDKs:
+      - Overview: sdk/overview.md
+      - Android:
+        - LiveStyler SDK for Android: sdk/android.md
+        - APIs: sdk/reference-kotlin.md
+      - iOS:
+        - LiveStyler SDK for iOS: sdk/ios.md
+        - APIs: sdk/reference-swift.md
+      - Flutter:
+        - LiveStyler SDK for Flutter: sdk/flutter.md
+        - APIs: sdk/reference-flutter.md
+      - Flutter Web:
+        - LiveStyler SDK for Flutter Web: sdk/flutter-web.md
+        - APIs: sdk/reference-flutter-web.md
+  - APIs:
+      - API Reference: api/api_docs.md
