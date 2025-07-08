@@ -1,5 +1,8 @@
 # LiveStyler SDK for iOS
 
+iOS용 애플리케이션에 LiveStyler 기능을 적용하기 위한 SDK입니다.
+SDK는 카메라를 초기화하여 촬영된 영상을 전송하고 영상처리가 완료된 영상을 수신하여 보여주는 기능을 제공합니다.
+
 ## 시작하기
 
 ### 요구 사항
@@ -24,9 +27,9 @@ pod 'LiveStylerSDK', :git => 'https://github.com/dob-world/LiveStylerSDKiOS.git'
 pod install
 ```
 
-### 사용방법
+## 사용방법
 
-#### 쉬운 사용
+### 쉬운 사용
 
 기능을 테스트하기 위해 사전에 구현되어 있는 기능을 간단하게 적용하여 사용해 볼 수 있습니다.
 
@@ -47,20 +50,18 @@ let contants = AppConstants(
 StreamViewController(appConstants: contants)
 ```
 
-#### 직접 개발
+### 직접 개발
 
 쉬운 사용에서는 제공하지 않는 추가적인 기능, UI/UX의 임의 구현을 위해서는 직접 구현하는 것이 좋습니다.
 
 사용 방법은 후술할 [주요 기능 명세](#주요-기능-명세)를 참고하여 주시기 바랍니다.
-
 예제는 SDK로 제공되는 [StreamViewController의 소스코드](ios-streamviewcontroller.md)를 참고하여 주시기 바랍니다.
-
 
 세부적인 API 명세는 [iOS APIs](reference-swift.md)를 참고하여 주시기 바랍니다.
 
 
-#### 주요 기능 명세
+## 주요 기능 명세
 
-##### LiveStylerManager
+### LiveStylerManager
 
-###### initialize() ...
+#### initialize() ...
