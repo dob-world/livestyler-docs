@@ -43,7 +43,6 @@ dependencies {
 ### 쉬운 사용
 
 기능이 사전에 구현된 `StreamFragment` 사용할 수 있습니다.
-화면의 디자인과 기능을 변경하고자 하면 StreamFragment.kt 파일과 fragment_stream.xml 파일을 수정하여 사용하세요.
 
 ```kotlin
 // 초기화
@@ -83,6 +82,7 @@ findNavController().navigate(R.id.action_HostFragment_to_StreamFragment, args = 
 쉬운 사용에서는 제공하지 않는 추가적인 기능, UI/UX의 임의 구현을 위해서는 직접 구현하는 것이 좋습니다.
 
 사용 방법은 후술할 [주요 기능 명세](#주요-기능-명세)를 참고하여 주시기 바랍니다.
+
 화면의 디자인과 기능을 변경하고자 하면 [`StreamFragment.kt` 파일](android-streamfragmentkt.md)과 [`fragment_stream.xml` 파일](android-fragmentstreamxml.md)을 참고하여 사용하세요.
 
 세부적인 API 명세는 [Android APIs](reference-kotlin.md)를 참고하여 주시기 바랍니다.
