@@ -1,6 +1,6 @@
 # LiveStyler 란?
 
-LiveStyler는 **dob Studio**에서 개발한 AI기반 영상 필터 서비스 [Devuit.ai](https://devuitai.com)의 더욱 더 발전시킨 **실시간 AI 영상 필터 효과 서비스**입니다.
+LiveStyler는 **dob Studio**에서 개발한 AI기반 영상 필터 서비스 [Devut.ai](https://devutai.com)의 더욱 더 발전시킨 **실시간 AI 영상 필터 효과 서비스**입니다.
 
 ## 왜 LiveStyler인가?
 
