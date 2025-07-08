@@ -1,10 +1,6 @@
 # LiveStyler SDK for iOS
 
-LiveStyler iOS SDK를 사용하면 iOS 애플리케이션에 LiveStyler의 강력한 기능을 통합할 수 있습니다. 이 문서는 SDK를 시작하고, 주요 기능을 활용하며, 일반적인 문제를 해결하는 데 도움이 되는 포괄적인 가이드를 제공합니다.
-
 ## 시작하기
-
-LiveStyler iOS SDK를 프로젝트에 추가하고 설정하는 방법에 대해 알아봅니다.
 
 ### 요구 사항
 
@@ -14,14 +10,12 @@ LiveStyler iOS SDK를 프로젝트에 추가하고 설정하는 방법에 대해
 
 ### 설치
 
-CocoaPods 또는 Swift Package Manager를 사용하여 LiveStyler iOS SDK를 설치할 수 있습니다.
-
 #### CocoaPods
 
 `Podfile`에 다음 라인을 추가합니다:
 
 ```ruby
-pod 'LiveStylerSDK'
+pod 'LiveStylerSDK', :git => 'https://github.com/dob-world/LiveStylerSDKiOS.git', :tag => '0.0.1'
 ```
 
 그리고 다음 명령을 실행합니다:
@@ -30,36 +24,43 @@ pod 'LiveStylerSDK'
 pod install
 ```
 
-#### Swift Package Manager
+### 사용방법
 
-Xcode에서 다음 단계를 따릅니다:
+#### 쉬운 사용
 
-1.  `File` > `Add Packages...`를 선택합니다.
-2.  검색 바에 다음 URL을 입력합니다: `https://github.com/livestyler/livestyler-ios-sdk.git`
-3.  `Add Package`를 클릭합니다.
-
-### 초기화
-
-SDK를 사용하기 전에 애플리케이션 델리게이트에서 LiveStyler SDK를 초기화해야 합니다.
+기능을 테스트하기 위해 사전에 구현되어 있는 기능을 간단하게 적용하여 사용해 볼 수 있습니다.
 
 ```swift
 import LiveStylerSDK
-import UIKit
 
-@UIApplicationMain
-class AppDelegate: UIResponder, UIApplicationDelegate {
+let contants = AppConstants(
+    servers: Servers(
+        credential: "{user_credential}",                // 관리자 콘솔에서 발급한 Access Token
+        webSocketURL: "{signaling_endpoint}",           // 백엔드와 인증 정보를 주고 받는 시그널 채널 엔드포인트 주소
+        stunServer: "stun:stun.l.google.com:19302",     // STUN 서버 주소
+        turnServer: "{turn_server_endpoint}",           // TURN 서버 주소
+        turnUsername: "{username}",                     // TURN 서버 인증 정보
+        turnPassword: "{password}"                      // TURN 서버 인증 정보
+    )
+)
 
-    func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-        LiveStyler.initialize(apiKey: "YOUR_API_KEY")
-        return true
-    }
+StreamViewController(appConstants: contants)
+```
 
-    // MARK: UISceneSession Lifecycle
+#### 직접 개발
 
-    func application(_ application: UIApplication, configurationForConnecting connectingSceneSession: UISceneSession, options: UIScene.ConnectionOptions) -> UISceneConfiguration {
-        return UISceneConfiguration(name: "Default Configuration", sessionRole: connectingSceneSession.role)
-    }
+쉬운 사용에서는 제공하지 않는 추가적인 기능, UI/UX의 임의 구현을 위해서는 직접 구현하는 것이 좋습니다.
 
-    func application(_ application: UISceneSession.ConnectionOptions, didDiscardSceneSessions sceneSessions: Set<UISceneSession>) {
-    }
-}
+사용 방법은 후술할 [주요 기능 명세](#주요-기능-명세)를 참고하여 주시기 바랍니다.
+
+예제는 SDK로 제공되는 [StreamViewController의 소스코드](ios-streamviewcontroller.md)를 참고하여 주시기 바랍니다.
+
+
+세부적인 API 명세는 [iOS APIs](reference-swift.md)를 참고하여 주시기 바랍니다.
+
+
+#### 주요 기능 명세
+
+##### LiveStylerManager
+
+###### initialize() ...
