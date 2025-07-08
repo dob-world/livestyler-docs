@@ -1,1 +1,1 @@
-# LiveStyler SDK for Android APIs
+# LiveStyler SDK for Android
