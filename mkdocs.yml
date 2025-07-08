@@ -11,16 +11,16 @@ nav:
   - SDKs:
       - Overview: sdk/overview.md
       - Android:
-        - LiveStyler SDK for Android: sdk/android.md
+        - SDK: sdk/android.md
         - APIs: sdk/reference-kotlin.md
       - iOS:
-        - LiveStyler SDK for iOS: sdk/ios.md
+        - SDK: sdk/ios.md
         - APIs: sdk/reference-swift.md
       - Flutter:
-        - LiveStyler SDK for Flutter: sdk/flutter.md
+        - SDK: sdk/flutter.md
         - APIs: sdk/reference-flutter.md
       - Flutter Web:
-        - LiveStyler SDK for Flutter Web: sdk/flutter-web.md
+        - SDK: sdk/flutter-web.md
         - APIs: sdk/reference-flutter-web.md
   - APIs:
       - API Reference: api/api_docs.md
