@@ -24,3 +24,12 @@ nav:
         - APIs: sdk/reference-flutter-web.md
   - APIs:
       - API Reference: api/api_docs.md
+
+markdown_extensions:
+  - pymdownx.highlight:
+      anchor_linenums: true
+      line_spans: __span
+      pygments_lang_class: true
+  - pymdownx.inlinehilite
+  - pymdownx.snippets
+  - pymdownx.superfences
