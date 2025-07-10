@@ -1,6 +1,7 @@
 # LiveStyler SDK for Android
 
-LiveStyler Android SDK는 WebRTC 기술을 사용하여 안드로이드 단말기에서 촬영한 영상을 서버로 전송하여 영상에 필터를 적용하고 수신하는 기능을 제공합니다.
+Android용 애플리케이션에 LiveStyler 기능을 적용하기 위한 SDK입니다.
+SDK는 카메라를 초기화하여 촬영된 영상을 전송하고 영상처리가 완료된 영상을 수신하여 보여주는 기능을 제공합니다.
 
 ## 시작하기
 
@@ -36,6 +37,12 @@ allprojects {
 dependencies {
     implementation "ai.livestyler:LiveStylerSDKAndroid:latest.release"
 }
+```
+
+그리고 다음 명령을 실행합니다:
+
+```bash
+$ ./gradlew build --refresh-dependencies
 ```
 
 ## 사용방법

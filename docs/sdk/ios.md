@@ -30,7 +30,7 @@ pod 'LiveStylerSDK', :git => 'https://github.com/dob-world/LiveStylerSDKiOS.git'
 그리고 다음 명령을 실행합니다:
 
 ```bash
-pod install
+$ pod install
 ```
 
 ## 사용방법
