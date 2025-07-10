@@ -85,42 +85,15 @@ _liveStylerManager = LiveStylerManager(
     credential: '{credential}',
     apiEndpoint: '{apiEndpoint}',
     signalEndpoint: '{signalEndpoint}',
-    iceServerList: '[{iceServers}]'
-    iceTransportsType: 'relay',
-    localRenderer: layout_localRenderer,
-    remoteRenderer: layout_remoteRenderer,
-    signalStateListener: this,
-    rendererStateListener: this,
-    dataChannelStateListener: this,
-    onReceiveStatsData: '{onReceiveStatsData}',
+    iceServerList: '{iceServers}',
+    iceTransportsType: 'Relay',
+    localRenderer: {localRenderer},
+    remoteRenderer: {remoteRenderer},
+    signalStateListener: {signalStateListener},
+    rendererStateListener: {rendererStateListener},
+    dataChannelStateListener: {dataChannelStateListener},
+    onReceiveStatsData: {onReceiveStatsData},
 );
-```
-
-- `onReceiveStatsData`: 재생 통계가 수신되는 콜백 함수
-
-#### initialize()
-
-초기화가 될 때 필요한 작업이 이루어집니다.
-
-```dart
-@override
-void initState() {
-    super.initState();
-    _liveStylerManager = LiveStylerManager(
-      credential: '{credential}',
-      apiEndpoint: '{apiEndpoint}',
-      signalEndpoint: '{signalEndpoint}',
-      iceServerList: '{iceServers}',
-      iceTransportsType: 'Relay',
-      localRenderer: {localRenderer},
-      remoteRenderer: {remoteRenderer},
-      signalStateListener: {signalStateListener},
-      rendererStateListener: {rendererStateListener},
-      dataChannelStateListener: {dataChannelStateListener},
-      onReceiveStatsData: {onReceiveStatsData},
-    );
-    _liveStylerManager.initialize();
-}
 ```
 
 - `creadential`: 관리자 페이지를 통해 발급 받은 인증 토큰
@@ -134,6 +107,18 @@ void initState() {
 - `rendererStateListener`: 렌더러의 이벤트를 처리
 - `dataChannelStateListener`: 데이터 채널의 이벤트를 처리
 - `onReceiveStatsData`: 재생 통계가 수신되는 콜백 함수
+
+#### initialize()
+
+초기화가 될 때 필요한 작업이 이루어집니다.
+
+```dart
+@override
+void initState() {
+    super.initState();
+    _liveStylerManager.initialize();
+}
+```
 
 #### release()
 
