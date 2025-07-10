@@ -190,16 +190,6 @@ override fun onDestroyView() {
 }
 ```
 
-#### updateFilterCategory()
-
-API 서버에서 필터, 카테고리 리스트를 새로 받아 업데이트합니다.
-필터 리스트는 시그널 서버에 접속하면 자동으로 업데이트됩니다.
-갱신된 리스트는 SignalStateListener를 통해 전달됩니다.
-
-```kotlin
-liveStylerManager.updateFilterCategory()
-```
-
 #### changeFilter(String)
 
 WebRTC 서버에 설정된 필터를 변경합니다.
@@ -221,6 +211,16 @@ liveStylerManager.switchCamera("{camera_id}")
 
 - camera_id: CamaraManager(안드로이드 시스템 도구)를 통해 얻은 카메라의 ID
 
+#### updateFilterCategory()
+
+API 서버에서 필터, 카테고리 리스트를 새로 받아 업데이트합니다.
+필터 리스트는 시그널 서버에 접속하면 자동으로 업데이트됩니다.
+갱신된 리스트는 SignalStateListener를 통해 전달됩니다.
+
+```kotlin
+liveStylerManager.updateFilterCategory()
+```
+
 #### changeModel(String)
 
 전달 받은 모델 이름으로 필터 모델을 변경합니다..
@@ -231,3 +231,7 @@ liveStylerManager.changeModel("{model_name}")
 ```
 
 - model_name: FilterCategoryData의 모델 이름
+
+> Android SDK에는 API를 통해 모델 리스트를 가져오는 처리가 포함되어 있습니다.<br/>
+> 하지만, SDK에 반영된 API는 LiveStyler 제공 서비스이므로 실제 서비스와 차이가 있을 수 있습니다.<br/>
+> API는 서비스의 구성에 따라 달라질 수 있으므로 API 가이드를 참고하여 모델 리스트를 확인하여 사용하시기 바랍니다.

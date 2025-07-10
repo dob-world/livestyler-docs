@@ -70,4 +70,86 @@ StreamViewController(appConstants: contants)
 
 ### LiveStylerManager
 
-#### initialize() ...
+```swift
+/// 초기화
+
+let contants = AppConstants(
+    servers: Servers(
+        credential: "{user_credential}",                // 관리자 콘솔에서 발급한 Access Token
+        webSocketURL: "{signaling_endpoint}",           // 백엔드와 인증 정보를 주고 받는 시그널 채널 엔드포인트 주소
+        stunServer: "stun:stun.l.google.com:19302",     // STUN 서버 주소
+        turnServer: "{turn_server_endpoint}",           // TURN 서버 주소
+        turnUsername: "{username}",                     // TURN 서버 인증 정보
+        turnPassword: "{password}"                      // TURN 서버 인증 정보
+    )
+)
+
+let manager = LiveStylerManager(appConstants: contants)
+```
+
+#### initialize()
+
+초기화가 될 때 필요한 작업이 이루어집니다.
+
+```swift
+public override func viewDidLoad() {
+    super.viewDidLoad()
+    manager.initialize()
+}
+```
+
+#### activate()
+
+카메라 캡처를 시작합니다.
+
+```swift
+public override func viewWillAppear(_ animated: Bool) {
+    super.viewWillAppear(animated)
+    manager.activate()
+}
+```
+
+####  deactivate()
+
+카메라 캡처를 중단합니다.
+
+```swift
+public override func viewDidDisappear(_ animated: Bool) {
+    super.viewDidDisappear(animated)
+    manager.deactivate()
+}
+```
+
+#### cleanup()
+
+시그널 서버 연결과 WebRTC 연결을 완전히 종료하고 리소스를 반환합니다.
+
+```swift
+deinit {
+    manager.cleanup()
+}
+```
+
+#### switchCamera(cameraId: String)
+
+전달 받은 카메라 ID로 전환합니다.
+카메라 ID는 AVCaptureDevice를 통해 얻을 수 있습니다.
+
+```swift
+manager.switchCamera("{camera_id}")
+```
+
+- camera_id: AVCaptureDevice(iOS 시스템 도구)를 통해 얻은 카메라의 ID
+
+#### changeModel(modelName: String)
+
+전달 받은 모델 이름으로 필터 모델을 변경합니다.
+
+```swift
+manager.changeModel("{model_name}")
+```
+
+- model_name: FilterCategoryData의 모델 이름
+
+> iOS SDK에는 API를 통해 모델 리스트를 가져오는 처리가 포함되어 있지 않습니다.<br/>
+> API 가이드를 참고하여 모델 리스트를 확인하여 사용하시기 바랍니다.
