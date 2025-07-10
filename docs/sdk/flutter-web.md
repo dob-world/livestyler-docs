@@ -151,7 +151,7 @@ _liveStylerManager.updateFilterCategory();
 _liveStylerManager.switchCamera("{camera_id}")
 ```
 
-- camera_id: MediaDevices를 통해 얻은 카메라의 ID
+- `camera_id`: MediaDevices를 통해 얻은 카메라의 ID
 
 #### changeModel(String)
 
@@ -161,4 +161,4 @@ _liveStylerManager.switchCamera("{camera_id}")
 _liveStylerManager.changeModel("{model_name}")
 ```
 
-- model_name: FilterCategoryData의 모델 이름
+- `model_name`: FilterCategoryData의 모델 이름
