@@ -1,4 +1,4 @@
-# LiveStyler SDK for Flutter(Android, iOS, macOS)
+# LiveStyler SDK for Flutter(Android, iOS)
 
 Flutter CrossPlatfom 에 LiveStyler 기능을 적용하기 위한 SDK입니다.
 SDK는 카메라를 초기화하여 촬영된 영상을 전송하고 영상처리가 완료된 영상을 수신하여 보여주는 기능을 제공합니다.
@@ -12,9 +12,6 @@ SDK는 카메라를 초기화하여 촬영된 영상을 전송하고 영상처�
     - AGP 8.0 이상
     - Kotlin 1.7.21 이상
 - iOS 12.0 이상
-    - Xcode 12.0 이상
-    - Swift 5.0 이상
-- macOS 13.0 이상
     - Xcode 12.0 이상
     - Swift 5.0 이상
 
