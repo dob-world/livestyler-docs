@@ -162,3 +162,75 @@ _liveStylerManager.changeModel("{model_name}")
 ```
 
 - `model_name`: FilterCategoryData의 모델 이름
+
+### AppEnv
+
+AppEnv 클래스는 애플리케이션 환경 설정을 관리합니다.
+
+```dart
+// 환경 설정
+AppEnv.setEnv(
+    '{credential}',
+    '{apiEndpoint}',
+    '{signalEndpoint}',
+    '{iceServers}',
+    '{onTrialStarted}',
+    '{onTrialEnded}',
+    '{onChangeLanguage}',
+    '{language}',
+);
+```
+
+- `credential`: 인증 정보
+- `apiEndpoint`: API 엔드포인트 URL
+- `signalEndpoint`: 시그널링 서버 엔드포인트 URL
+- `iceServers`: ICE 서버 설정
+- `onTrialStarted`: 트라이얼 시작 콜백
+- `onTrialEnded`: 트라이얼 종료 콜백
+- `onChangeLanguage`: 언어 변경 콜백
+- `language`: 초기 언어 설정
+
+## 사용예시
+
+```dart
+void main() async {
+  // 환경 설정
+  AppEnv.setEnv(
+    credential: 'your_credential',
+    apiEndpoint: 'https://api.example.com',
+    signalEndpoint: 'wss://signal.example.com',
+    iceServers: [
+      {'urls': 'stun:stun.example.com:19302'},
+    ],
+    language: 'en-US',
+  );
+
+  // LiveStylerManager 초기화
+  final manager = LiveStylerManager(
+    credential: AppEnv.credential,
+    apiEndpoint: AppEnv.apiEndpoint,
+    signalEndpoint: AppEnv.signalEndpoint,
+    iceServerList: AppEnv.iceServers.map((server) => StunTurnServer.fromJson(server)).toList(),
+    localRenderer: RTCVideoRenderer(),
+    remoteRenderer: RTCVideoRenderer(),
+    signalStateListener: YourSignalStateListener(),
+    rendererStateListener: YourRendererStateListener(),
+    dataChannelStateListener: YourDataChannelStateListener(),
+    onReceiveStatsData: (stats) {
+      print('Received stats: $stats');
+    },
+  );
+
+  await manager.initialize();
+  await manager.start();
+
+  // 스타일 모델 변경
+  await manager.changeModel('romantic');
+
+  // 카메라 전환
+  await manager.switchCamera('front_camera_id');
+
+  // 연결 종료
+  await manager.stop();
+}
+```

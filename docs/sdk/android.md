@@ -230,7 +230,7 @@ liveStylerManager.updateFilterCategory()
 
 #### changeModel(String)
 
-전달 받은 모델 이름으로 필터 모델을 변경합니다..
+전달 받은 모델 이름으로 필터 모델을 변경합니다.
 모델 이름은 onReceivedFilterList() 콜백을 통해 얻은 필터의 정보(FilterCategoryData)에서 모델 이름을 찾아서 사용합니다.
 
 ```kotlin
