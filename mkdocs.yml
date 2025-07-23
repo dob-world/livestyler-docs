@@ -2,7 +2,7 @@ site_name: LiveStyler 개발자 문서
 site_description: LiveStyler 서비스 연동을 위한 공식 개발자 문서입니다.
 site_author: dob Studio Inc.
 site_version: 1.0
-site_url: https://dob-world.github.io/livestyler-docs/
+site_url: https://docs.livestyler.io/
 theme:
   name: material
   #features:
