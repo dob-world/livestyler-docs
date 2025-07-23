@@ -32,7 +32,7 @@ plugins:
             Flutter: 플러터
             "Flutter Web": 플러터 웹
             APIs: API
-            "API Reference": API 명세
+            API: API
         - locale: en
           name: English
           site_name: LiveStyler Developer Docs
@@ -55,10 +55,12 @@ nav:
         - SDK: sdk/flutter-web.md
         - APIs: sdk/reference-flutter-web.md
   - APIs:
-      - "API Reference": api/api_docs.md
+      - Overview: api/overview.md
+      - REST: api/rest.md
+      - WebSocket: api/websocket.md
 
 markdown_extensions:
-  # - admonition
+  - admonition
   # - pymdownx.details
   # - attr_list
   # - pymdownx.tabbed:
