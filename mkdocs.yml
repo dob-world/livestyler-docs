@@ -1,10 +1,42 @@
-site_name: LiveStyler Docs
-site_description: Documentation for LiveStyler, a tool for live styling web applications.
+site_name: LiveStyler 개발자 문서
+site_description: LiveStyler 서비스 연동을 위한 공식 개발자 문서입니다.
 site_author: dob Studio Inc.
 site_version: 1.0
-site_url: https://dob-world.github.io/livestyler-docs
+site_url: https://dob-world.github.io/livestyler-docs/
 theme:
   name: material
+  #features:
+  #   - navigation.tabs
+  #   - navigation.instant
+  #   - content.tabs.link
+  logo: assets/images/favicon.png
+  favicon: assets/images/favicon.png
+
+plugins:
+  - search:
+      lang:
+        - en
+        - ko
+  - i18n:
+      docs_structure: folder
+      languages:
+        - locale: ko
+          name: 한국어
+          default: true
+          nav_translations:
+            Home: 홈
+            SDKs: SDK
+            Overview: 개요
+            Android: 안드로이드
+            iOS: iOS
+            Flutter: 플러터
+            "Flutter Web": 플러터 웹
+            APIs: API
+            "API Reference": API 명세
+        - locale: en
+          name: English
+          site_name: LiveStyler Developer Docs
+          site_description: Official developer documentation for integrating the LiveStyler service.
 
 nav:
   - Home: index.md
@@ -19,17 +51,29 @@ nav:
       - Flutter:
         - SDK: sdk/flutter.md
         - APIs: sdk/reference-flutter.md
-      - Flutter Web:
+      - "Flutter Web":
         - SDK: sdk/flutter-web.md
         - APIs: sdk/reference-flutter-web.md
   - APIs:
-      - API Reference: api/api_docs.md
+      - "API Reference": api/api_docs.md
 
 markdown_extensions:
+  # - admonition
+  # - pymdownx.details
+  # - attr_list
+  # - pymdownx.tabbed:
+  #     alternate_style: true
+  # - pymdownx.emoji:
+  #     emoji_index: !!python/name:materialx.emoji.twemoji
+  #     emoji_generator: !!python/name:materialx.emoji.to_svg
   - pymdownx.highlight:
       anchor_linenums: true
       line_spans: __span
       pygments_lang_class: true
   - pymdownx.inlinehilite
   - pymdownx.snippets
-  - pymdownx.superfences
+  - pymdownx.superfences:
+      # custom_fences:
+      #   - name: mermaid
+      #     class: mermaid
+      #     format: !!python/name:pymdownx.superfences.fence_code_format

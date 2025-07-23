@@ -7,17 +7,13 @@ https://dob-world.github.io/livestyler-docs/
 
 ## 로컬 개발 환경 설정
 ### Docker를 이용한 설정
-1. Docker 이미지 다운로드
+1. Docker 이미지 빌드 (프로젝트에 필요한 플러그인을 포함한 이미지를 생성합니다. 최초 설정 시 또는 Dockerfile 변경 시에만 실행합니다.)
 ```
-docker pull squidfunk/mkdocs-material
+docker build -t livestyler-docs .
 ```
-2. 프로젝트 초기화 (새 프로젝트 생성 시에만 실행)
 
+2. 빌드된 이미지로 로컬 서버 실행 (실시간 미리보기)
 ```
-docker run --rm -it -v ${PWD}:/docs squidfunk/mkdocs-material new .
+docker run --rm -it -p 8000:8000 -v ${PWD}:/docs livestyler-docs
 ```
-3. 로컬 서버 실행 (실시간 미리보기)
-```
-docker run --rm -it -p 8000:8000 -v ${PWD}:/docs squidfunk/mkdocs-material
-```
-서버가 실행되면 브라우저에서 http://localhost:8000으로 접속하여 문서를 확인할 수 있습니다.">
+서버가 실행되면 브라우저에서 http://localhost:8000으로 접속하여 문서를 확인할 수 있습니다.
