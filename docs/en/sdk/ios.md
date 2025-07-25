@@ -1,86 +1,86 @@
 # LiveStyler SDK for iOS
 
-iOS용 애플리케이션에 LiveStyler 기능을 적용하기 위한 SDK입니다.
-SDK는 카메라를 초기화하여 촬영된 영상을 전송하고 영상처리가 완료된 영상을 수신하여 보여주는 기능을 제공합니다.
+This SDK is for applying LiveStyler features to iOS applications.
+The SDK provides functionality to initialize the camera, send the captured video, and receive and display the video after processing is complete.
 
-## 시작하기
+## Getting Started
 
-### 요구 사항
+### Requirements
 
-- iOS 12.0 이상
-- Xcode 12.0 이상
-- Swift 5.0 이상
+- iOS 12.0 or higher
+- Xcode 12.0 or higher
+- Swift 5.0 or higher
 
-### 주요기능
+### Key Features
 
-- 시그널 채널을 통한 영상 변환을 제어
-- 카메라의 영상을 WebRTC 서버로 전송
-- 필터가 적용된 영상을 수신
+- Control video conversion through a signaling channel
+- Send camera video to a WebRTC server
+- Receive video with filters applied
 
-### 설치
+### Installation
 
 #### CocoaPods
 
-`Podfile`에 다음 라인을 추가합니다:
+Add the following line to your `Podfile`:
 
 ```ruby
 pod 'LiveStylerSDK', :git => 'https://github.com/dob-world/LiveStylerSDKiOS.git', :tag => '0.0.1'
 ```
 
-그리고 다음 명령을 실행합니다:
+And then run the following command:
 
 ```bash
 $ pod install
 ```
 
-## 사용방법
+## How to Use
 
-### 쉬운 사용
+### Easy Usage
 
-기능을 테스트하기 위해 사전에 구현되어 있는 기능을 간단하게 적용하여 사용해 볼 수 있습니다.
+To test the functionality, you can easily apply and use the pre-implemented features.
 
 ```swift
 import LiveStylerSDK
 
 let contants = AppConstants(
     servers: Servers(
-        credential: "{user_credential}",                // 관리자 콘솔에서 발급한 Access Token
-        webSocketURL: "{signaling_endpoint}",           // 백엔드와 인증 정보를 주고 받는 시그널 채널 엔드포인트 주소
-        stunServer: "stun:stun.l.google.com:19302",     // STUN 서버 주소
-        turnServer: "{turn_server_endpoint}",           // TURN 서버 주소
-        turnUsername: "{username}",                     // TURN 서버 인증 정보
-        turnPassword: "{password}"                      // TURN 서버 인증 정보
+        credential: "{user_credential}",                // Access Token issued from the admin console
+        webSocketURL: "{signaling_endpoint}",           // Signaling channel endpoint address for exchanging authentication information with the backend
+        stunServer: "stun:stun.l.google.com:19302",     // STUN server address
+        turnServer: "{turn_server_endpoint}",           // TURN server address
+        turnUsername: "{username}",                     // TURN server authentication information
+        turnPassword: "{password}"                      // TURN server authentication information
     )
 )
 
 StreamViewController(appConstants: contants)
 ```
 
-### 직접 개발
+### Custom Development
 
-쉬운 사용에서는 제공하지 않는 추가적인 기능, UI/UX의 임의 구현을 위해서는 직접 구현하는 것이 좋습니다.
+For additional features not provided in the easy usage, or for custom implementation of UI/UX, it is recommended to implement it yourself.
 
-사용 방법은 후술할 [주요 기능 명세](#주요-기능-명세)를 참고하여 주시기 바랍니다.
-예제는 SDK로 제공되는 [StreamViewController의 소스코드](ios-streamviewcontroller.md)를 참고하여 주시기 바랍니다.
+Please refer to the [Key Feature Specifications](#key-feature-specifications) described later for usage instructions.
+For an example, please refer to the [source code of StreamViewController](ios-streamviewcontroller.md) provided with the SDK.
 
-세부적인 API 명세는 [iOS APIs](reference-swift.md)를 참고하여 주시기 바랍니다.
+For detailed API specifications, please refer to [iOS APIs](reference-swift.md).
 
 
-## 주요 기능 명세
+## Key Feature Specifications
 
 ### LiveStylerManager
 
 ```swift
-/// 초기화
+/// Initialization
 
 let contants = AppConstants(
     servers: Servers(
-        credential: "{user_credential}",                // 관리자 콘솔에서 발급한 Access Token
-        webSocketURL: "{signaling_endpoint}",           // 백엔드와 인증 정보를 주고 받는 시그널 채널 엔드포인트 주소
-        stunServer: "stun:stun.l.google.com:19302",     // STUN 서버 주소
-        turnServer: "{turn_server_endpoint}",           // TURN 서버 주소
-        turnUsername: "{username}",                     // TURN 서버 인증 정보
-        turnPassword: "{password}"                      // TURN 서버 인증 정보
+        credential: "{user_credential}",                // Access Token issued from the admin console
+        webSocketURL: "{signaling_endpoint}",           // Signaling channel endpoint address for exchanging authentication information with the backend
+        stunServer: "stun:stun.l.google.com:19302",     // STUN server address
+        turnServer: "{turn_server_endpoint}",           // TURN server address
+        turnUsername: "{username}",                     // TURN server authentication information
+        turnPassword: "{password}"                      // TURN server authentication information
     )
 )
 
@@ -89,7 +89,7 @@ let manager = LiveStylerManager(appConstants: contants)
 
 #### initialize()
 
-초기화가 될 때 필요한 작업이 이루어집니다.
+Performs necessary tasks during initialization.
 
 ```swift
 public override func viewDidLoad() {
@@ -100,7 +100,7 @@ public override func viewDidLoad() {
 
 #### activate()
 
-카메라 캡처를 시작합니다.
+Starts camera capture.
 
 ```swift
 public override func viewWillAppear(_ animated: Bool) {
@@ -111,7 +111,7 @@ public override func viewWillAppear(_ animated: Bool) {
 
 ####  deactivate()
 
-카메라 캡처를 중단합니다.
+Stops camera capture.
 
 ```swift
 public override func viewDidDisappear(_ animated: Bool) {
@@ -122,7 +122,7 @@ public override func viewDidDisappear(_ animated: Bool) {
 
 #### cleanup()
 
-시그널 서버 연결과 WebRTC 연결을 완전히 종료하고 리소스를 반환합니다.
+Completely terminates the signal server and WebRTC connections and releases resources.
 
 ```swift
 deinit {
@@ -132,24 +132,24 @@ deinit {
 
 #### switchCamera(cameraId: String)
 
-전달 받은 카메라 ID로 전환합니다.
-카메라 ID는 AVCaptureDevice를 통해 얻을 수 있습니다.
+Switches to the camera with the received camera ID.
+The camera ID can be obtained through AVCaptureDevice.
 
 ```swift
 manager.switchCamera("{camera_id}")
 ```
 
-- camera_id: AVCaptureDevice(iOS 시스템 도구)를 통해 얻은 카메라의 ID
+- camera_id: The ID of the camera obtained through AVCaptureDevice (iOS system tool).
 
 #### changeModel(modelName: String)
 
-전달 받은 모델 이름으로 필터 모델을 변경합니다.
+Changes the filter model to the received model name.
 
 ```swift
 manager.changeModel("{model_name}")
 ```
 
-- model_name: FilterCategoryData의 모델 이름
+- model_name: The model name from FilterCategoryData.
 
-> iOS SDK에는 API를 통해 모델 리스트를 가져오는 처리가 포함되어 있지 않습니다.<br/>
-> API 가이드를 참고하여 모델 리스트를 확인하여 사용하시기 바랍니다.
+> The iOS SDK does not include a process to fetch the model list via the API.<br/>
+> Please refer to the API guide to check and use the model list.

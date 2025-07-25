@@ -1,17 +1,16 @@
-# Welcome to MkDocs
+# LiveStyler
 
-For full documentation visit [mkdocs.org](https://www.mkdocs.org).
+LiveStyler is a **real-time AI video filter effect service**, an advanced version of the AI-based video filter service [Devut.ai](https://devutai.com) developed by **dob Studio**.
 
-## Commands
+## Features of LiveStyler
 
-* `mkdocs new [dir-name]` - Create a new project.
-* `mkdocs serve` - Start the live-reloading docs server.
-* `mkdocs build` - Build the documentation site.
-* `mkdocs -h` - Print help message and exit.
+LiveStyler is designed for easy adoption by providing a cloud-based AI model, which reduces the high costs associated with building and maintaining on-premise AI models.
 
-## Project layout
+You can send video from your camera in real-time through an application or web service to the cloud and apply AI filters.
 
-    mkdocs.yml    # The configuration file.
-    docs/
-        index.md  # The documentation homepage.
-        ...       # Other markdown pages, images and other files.
+## Documentation Guide
+
+This document provides information on the SDKs and APIs for using the LiveStyler service.
+
+*   [**SDK**](./sdk/overview.md): We provide SDKs to easily integrate LiveStyler on various platforms such as iOS, Android, and Flutter. Check the guides and sample code for each platform to get started quickly.
+*   [**API**](./api/overview.md): You can directly control LiveStyler's features through RESTful and WebSocket APIs. Refer to the API specifications and usage guides to implement custom integrations for your service.

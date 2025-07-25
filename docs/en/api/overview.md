@@ -1,13 +1,13 @@
 # LiveStyler API
 
-LiveStyler provides two types of APIs: the **WebSocket API** for real-time video processing and the **REST API** for managing resources like filters.
+LiveStyler provides two types of APIs: a **WebSocket API** for real-time video processing and a **REST API** for managing resources like filters.
 
 - [REST API](./rest.md): Used to manage service metadata, such as retrieving a list of filters.
 - [WebSocket API](./websocket.md): Used to send and receive video streams in real-time via WebRTC.
 
 ---
 
-## Before You Begin
+## Before You Start
 
 !!! info "Issuing an API Secret Key"
 

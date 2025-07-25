@@ -44,16 +44,16 @@ nav:
       - Overview: sdk/overview.md
       - Android:
         - SDK: sdk/android.md
-        - APIs: sdk/reference-kotlin.md
+        # - APIs: sdk/reference-kotlin.md
       - iOS:
         - SDK: sdk/ios.md
-        - APIs: sdk/reference-swift.md
+        # - APIs: sdk/reference-swift.md
       - Flutter:
         - SDK: sdk/flutter.md
-        - APIs: sdk/reference-flutter.md
+        # - APIs: sdk/reference-flutter.md
       - "Flutter Web":
         - SDK: sdk/flutter-web.md
-        - APIs: sdk/reference-flutter-web.md
+        # - APIs: sdk/reference-flutter-web.md
   - APIs:
       - Overview: api/overview.md
       - REST: api/rest.md

@@ -1,67 +1,73 @@
-# LiveStyler SDK for Flutter Web, Desktop(macOS, Windows)
+# LiveStyler SDK for Flutter Web, Desktop (macOS, Windows)
 
-Flutter CrossPlatfom 에 LiveStyler 기능을 적용하기 위한 SDK입니다.
-SDK는 카메라를 초기화하여 촬영된 영상을 전송하고 영상처리가 완료된 영상을 수신하여 보여주는 기능을 제공합니다.
+This SDK is for applying LiveStyler features to the Flutter Cross-Platform.
+The SDK provides functionality to initialize the camera, send the captured video, and receive and display the video after processing is complete.
 
-## 시작하기
+## Getting Started
 
-### 요구사항
+### Requirements
 
 - Web
-    - Windows 10 이상, macOS 13.0 이상
-        - Flutter 3.24.5 이상
-        - Chrome 브라우저 100 이상
+    - Windows 10 or higher, macOS 13.0 or higher
+        - Flutter 3.24.5 or higher
+        - Chrome browser 100 or higher
 - Desktop
-    - Windows 10 이상
-        - Flutter 3.24.5 이상
-    - macOS 13.0 이상
-        - Xcode 12.0 이상
-        - Swift 5.0 이상
+    - Windows 10 or higher
+        - Flutter 3.24.5 or higher
+    - macOS 13.0 or higher
+        - Xcode 12.0 or higher
+        - Swift 5.0 or higher
 
-### 주요기능
+### Key Features
 
-- 시그널 채널을 통한 영상 변환을 제어
-- 카메라의 영상을 WebRTC 서버로 전송
-- 필터가 적용된 영상을 수신
+- Control video conversion through a signaling channel
+- Send camera video to a WebRTC server
+- Receive video with filters applied
 
-### 설치
+### Installation
 
-#### Gradle
+#### Pub
 
 ```yaml
-// pubspec.yml
+// pubspec.yaml
 
 dependencies:
-    livestayler_sdk_flutter_Web:
-        git: https://github.com/dob-world/LiveStylerSDKFlutterWebDesktop.git
-        ref: 0.0.1
+  livestyler_sdk_flutter_web:
+    git:
+      url: https://github.com/dob-world/LiveStylerSDKFlutterWebDesktop.git
+      ref: 0.0.1
 ```
 
-그리고 다음 명령을 실행합니다:
+And then run the following command:
 
 ```bash
 $ flutter pub get
 ```
 
-## 사용방법
+## How to Use
 
-### 쉬운 사용
+### Easy Usage
 
-기능이 사전에 구현된 `StreamPage` 사용할 수 있습니다.
+You can use the pre-implemented `StreamPage`.
 
 ```dart
-// 환경 초기화
+// Environment Initialization
 AppEnv.setEnv(
-    '{credential}',
-    '{apiEndpoint}',
-    '{signalEndpoint}',
-    '{iceServers}',
-    '{onTrialStarted}',
-    '{onTrialEnded}',
-    '{language}',
+    credential: '{credential}',
+    apiEndpoint: '{apiEndpoint}',
+    signalEndpoint: '{signalEndpoint}',
+    iceServers: '{iceServers}',
+    onTrialStarted: () {
+      // Handle trial started
+    },
+    onTrialEnded: () {
+      // Handle trial ended
+    },
+    language: '{language}',
 );
 
-// 화면 이동
+
+// Navigate to the screen
 Navigator.of(context).push(
     MaterialPageRoute(
         builder: (context) {
@@ -71,19 +77,19 @@ Navigator.of(context).push(
 );
 ```
 
-### 직접 개발
+### Custom Development
 
-쉬운 사용에서는 제공하지 않는 추가적인 기능, UI/UX의 임의 구현을 위해서는 직접 구현하는 것이 좋습니다.
+For additional features not provided in the easy usage, or for custom implementation of UI/UX, it is recommended to implement it yourself.
 
-사용 방법은 후술할 [주요 기능 명세](#주요-기능-명세)를 참고하여 주시기 바랍니다.
+Please refer to the [Key Feature Specifications](#key-feature-specifications) described later for usage instructions.
 
-화면의 디자인과 기능을 변경하고자 하면 [`stream_page.dart` 파일](flutter-streampagedart-web.md)을 참고하여 사용하세요.
+If you want to change the design and functionality of the screen, please refer to the [`stream_page.dart` file](flutter-streampagedart-web.md).
 
-세부적인 API 명세는 [Flutter APIs](reference-flutter-web.md)를 참고하여 주시기 바랍니다.
+For detailed API specifications, please refer to [Flutter Web APIs](reference-flutter-web.md).
 
-## 주요 기능 명세
+## Key Feature Specifications
 
-API를 사용하면 화면의 기능을 직접 만들어 구현할 수 있습니다.
+You can create and implement screen functions yourself using the API.
 
 ### LiveStylerManager
 
@@ -103,21 +109,21 @@ _liveStylerManager = LiveStylerManager(
 );
 ```
 
-- `creadential`: 관리자 페이지를 통해 발급 받은 인증 토큰
-- `apiEndpoint`: 서비스의 정보를 얻을 수 있는 API 서버
-- `signalEndpoint`: 백엔드와 인증 정보를 주고 받는 시그널 채널 엔드포인트 주소
-- `iceServers`: STUN 서버와 TURN 서버를 설정, STUN 서버는 제공된 구글 STUN 사용 권장
-- `iceTransportsType`: All, NoHost, Relay 중 하나의 값을 사용하여 Peep-to-peer 연결 방식을 지정
-- `localRenderer`: WebRTC 스트림을 렌더링하는 렌더러(RTCVideoRenderer)
-- `remoteRenderer`: WebRTC 리모트 스트림을 렌더링하는 렌더러(RTCVideoRenderer)
-- `signalStateListener`: 시그널 채널의 이벤트를 처리
-- `rendererStateListener`: 렌더러의 이벤트를 처리
-- `dataChannelStateListener`: 데이터 채널의 이벤트를 처리
-- `onReceiveStatsData`: 재생 통계가 수신되는 콜백 함수
+- `credential`: Authentication token issued through the admin page.
+- `apiEndpoint`: API server to get service information.
+- `signalEndpoint`: Signaling channel endpoint address for exchanging authentication information with the backend.
+- `iceServers`: Set STUN and TURN servers. It is recommended to use the provided Google STUN server.
+- `iceTransportsType`: Specify the Peer-to-peer connection method using one of the values: All, NoHost, Relay.
+- `localRenderer`: Renderer for the WebRTC local stream (RTCVideoRenderer).
+- `remoteRenderer`: Renderer for the WebRTC remote stream (RTCVideoRenderer).
+- `signalStateListener`: Handles events from the signaling channel.
+- `rendererStateListener`: Handles events from the renderer.
+- `dataChannelStateListener`: Handles events from the data channel.
+- `onReceiveStatsData`: Callback function that receives playback statistics.
 
 #### initialize()
 
-초기화가 될 때 필요한 작업이 이루어집니다.
+Performs necessary tasks during initialization.
 
 ```dart
 @override
@@ -129,7 +135,7 @@ void initState() {
 
 #### release()
 
-시그널 서버 연결과 WebRTC 연결을 완전히 종료하고 리소스를 반환합니다.
+Completely terminates the signal server and WebRTC connections and releases resources.
 
 ```dart
 @override
@@ -141,9 +147,9 @@ void dispose() {
 
 #### updateFilterCategory()
 
-API 서버에서 필터, 카테고리 리스트를 새로 받아 업데이트합니다.
-필터 리스트는 시그널 서버에 접속하면 자동으로 업데이트됩니다.
-갱신된 리스트는 SignalStateListener를 통해 전달됩니다.
+Updates the filter and category lists by fetching them from the API server.
+The filter list is automatically updated upon connecting to the signal server.
+The updated list is delivered through the SignalStateListener.
 
 ```dart
 _liveStylerManager.updateFilterCategory();
@@ -151,57 +157,63 @@ _liveStylerManager.updateFilterCategory();
 
 #### switchCamera(String)
 
-전달 받은 카메라 ID로 전환합니다.
-카메라 ID는 CameraManager를 통해 얻을 수 있습니다.
+Switches to the camera with the received camera ID.
+The camera ID can be obtained through MediaDevices.
 
 ```dart
 _liveStylerManager.switchCamera("{camera_id}")
 ```
 
-- `camera_id`: MediaDevices를 통해 얻은 카메라의 ID
+- `camera_id`: The ID of the camera obtained through MediaDevices.
 
 #### changeModel(String)
 
-전달 받은 모델 이름으로 필터 모델을 변경합니다.
+Changes the filter model to the received model name.
 
 ```dart
 _liveStylerManager.changeModel("{model_name}")
 ```
 
-- `model_name`: FilterCategoryData의 모델 이름
+- `model_name`: The model name from FilterCategoryData.
 
 ### AppEnv
 
-AppEnv 클래스는 애플리케이션 환경 설정을 관리합니다.
+The AppEnv class manages application environment settings.
 
 ```dart
-// 환경 설정
+// Environment setup
 AppEnv.setEnv(
-    '{credential}',
-    '{apiEndpoint}',
-    '{signalEndpoint}',
-    '{iceServers}',
-    '{onTrialStarted}',
-    '{onTrialEnded}',
-    '{onChangeLanguage}',
-    '{language}',
+    credential: '{credential}',
+    apiEndpoint: '{apiEndpoint}',
+    signalEndpoint: '{signalEndpoint}',
+    iceServers: '{iceServers}',
+    onTrialStarted: () {
+      // Handle trial started
+    },
+    onTrialEnded: () {
+      // Handle trial ended
+    },
+    onChangeLanguage: (lang) {
+      // Handle language change
+    },
+    language: '{language}',
 );
 ```
 
-- `credential`: 인증 정보
-- `apiEndpoint`: API 엔드포인트 URL
-- `signalEndpoint`: 시그널링 서버 엔드포인트 URL
-- `iceServers`: ICE 서버 설정
-- `onTrialStarted`: 트라이얼 시작 콜백
-- `onTrialEnded`: 트라이얼 종료 콜백
-- `onChangeLanguage`: 언어 변경 콜백
-- `language`: 초기 언어 설정
+- `credential`: Authentication information.
+- `apiEndpoint`: API endpoint URL.
+- `signalEndpoint`: Signaling server endpoint URL.
+- `iceServers`: ICE server settings.
+- `onTrialStarted`: Trial start callback.
+- `onTrialEnded`: Trial end callback.
+- `onChangeLanguage`: Language change callback.
+- `language`: Initial language setting.
 
-## 사용예시
+## Usage Example
 
 ```dart
 void main() async {
-  // 환경 설정
+  // Environment setup
   AppEnv.setEnv(
     credential: 'your_credential',
     apiEndpoint: 'https://api.example.com',
@@ -212,7 +224,7 @@ void main() async {
     language: 'en-US',
   );
 
-  // LiveStylerManager 초기화
+  // Initialize LiveStylerManager
   final manager = LiveStylerManager(
     credential: AppEnv.credential,
     apiEndpoint: AppEnv.apiEndpoint,
@@ -231,13 +243,13 @@ void main() async {
   await manager.initialize();
   await manager.start();
 
-  // 스타일 모델 변경
+  // Change style model
   await manager.changeModel('romantic');
 
-  // 카메라 전환
+  // Switch camera
   await manager.switchCamera('front_camera_id');
 
-  // 연결 종료
+  // Stop connection
   await manager.stop();
 }
 ```

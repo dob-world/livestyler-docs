@@ -1,53 +1,54 @@
-# LiveStyler SDK for Flutter(Android, iOS)
+# LiveStyler SDK for Flutter (Android, iOS)
 
-Flutter CrossPlatfom 에 LiveStyler 기능을 적용하기 위한 SDK입니다.
-SDK는 카메라를 초기화하여 촬영된 영상을 전송하고 영상처리가 완료된 영상을 수신하여 보여주는 기능을 제공합니다.
+This SDK is for applying LiveStyler features to the Flutter Cross-Platform.
+The SDK provides functionality to initialize the camera, send the captured video, and receive and display the video after processing is complete.
 
-## 시작하기
+## Getting Started
 
-### 요구사항
+### Requirements
 
-- Flutter 3.24.5 이상
-- Android 9.0 이상
-    - AGP 8.0 이상
-    - Kotlin 1.7.21 이상
-- iOS 12.0 이상
-    - Xcode 12.0 이상
-    - Swift 5.0 이상
+- Flutter 3.24.5 or higher
+- Android 9.0 or higher
+    - AGP 8.0 or higher
+    - Kotlin 1.7.21 or higher
+- iOS 12.0 or higher
+    - Xcode 12.0 or higher
+    - Swift 5.0 or higher
 
-### 주요기능
+### Key Features
 
-- 시그널 채널을 통한 영상 변환을 제어
-- 카메라의 영상을 WebRTC 서버로 전송
-- 필터가 적용된 영상을 수신
+- Control video conversion through a signaling channel
+- Send camera video to a WebRTC server
+- Receive video with filters applied
 
-### 설치
+### Installation
 
-#### Gradle
+#### Pub
 
 ```yaml
-// pubspec.yml
+// pubspec.yaml
 
 dependencies:
-    livestayler_sdk_flutter:
-        git: https://github.com/dob-world/LiveStylerSDKFlutter.git
-        ref: 0.0.1
+  livestyler_sdk_flutter:
+    git:
+      url: https://github.com/dob-world/LiveStylerSDKFlutter.git
+      ref: 0.0.1
 ```
 
-그리고 다음 명령을 실행합니다:
+And then run the following command:
 
 ```bash
 $ flutter pub get
 ```
 
-## 사용방법
+## How to Use
 
-### 쉬운 사용
+### Easy Usage
 
-기능이 사전에 구현된 `StreamPage` 사용할 수 있습니다.
+You can use the pre-implemented `StreamPage`.
 
 ```dart
-// 환경 초기화
+// Environment Initialization
 AppEnv.setEnv(
     '{credential}',
     '{apiEndpoint}',
@@ -58,7 +59,7 @@ AppEnv.setEnv(
     '{language}',
 );
 
-// 화면 이동
+// Navigate to the screen
 Navigator.of(context).push(
     MaterialPageRoute(
         builder: (context) {
@@ -68,18 +69,18 @@ Navigator.of(context).push(
 );
 ```
 
-### 직접 개발
+### Custom Development
 
-쉬운 사용에서는 제공하지 않는 추가적인 기능, UI/UX의 임의 구현을 위해서는 직접 구현하는 것이 좋습니다.
+For additional features not provided in the easy usage, or for custom implementation of UI/UX, it is recommended to implement it yourself.
 
-사용 방법은 후술할 [주요 기능 명세](#주요-기능-명세)를 참고하여 주시기 바랍니다.
+Please refer to the [Key Feature Specifications](#key-feature-specifications) described later for usage instructions.
 
-화면의 디자인과 기능을 변경하고자 하면 [`stream_page.dart` 파일](flutter-streampagedart-web.md)을 참고하여 사용하세요.
+If you want to change the design and functionality of the screen, please refer to the [`stream_page.dart` file](flutter-streampagedart-web.md).
 
-세부적인 API 명세는 [Flutter Web APIs](reference-flutter-web.md)를 참고하여 주시기 바랍니다.
+For detailed API specifications, please refer to [Flutter APIs](reference-flutter.md).
 
-## 주요 기능 명세
+## Key Feature Specifications
 
-API를 사용하면 화면의 기능을 직접 만들어 구현할 수 있습니다.
+You can create and implement screen functions yourself using the API.
 
 ### LiveStylerManager

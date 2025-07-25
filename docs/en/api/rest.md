@@ -7,21 +7,21 @@ The base URL is `https://api-paoqov032tbx.livestyler.ai`.
 
 The REST API uses **Basic Authentication**. You must send requests with your API Secret Key in the `Authorization` header.
 
-**Authorization Header Creation Process:**
+**Creating the Authorization Header:**
 
 1.  Create a string by appending a colon (`:`) to your **`API Secret Key`**. Leave the password part empty.
-    -   Example: `your_api_key_here:`
+    - Example: `your_api_key_here:`
 
-2.  **Base64-encode** the created string.
-    -   Example: `eW91cl9hcGlfa2V5X2hlcmU6`
-    !!! tip "Tip: How to Base64-encode using a script"
-        You can easily encode it in a Unix/Linux/macOS terminal with the following command.
+2.  **Base64-encode** the resulting string.
+    - Example: `eW91cl9hcGlfa2V5X2hlcmU6`
+    !!! tip "Tip: Base64 Encoding with a Script"
+        You can easily encode the string in a Unix/Linux/macOS terminal with the following command:
         ```bash
         echo -n 'your_api_key_here:' | base64
         ```
 
-3.  Complete the `Authorization` header value by prefixing the encoded string with `Basic `.
-    -   Example: `Authorization: Basic eW91cl9hcGlfa2V5X2hlcmU6`
+3.  Prepend `Basic ` to the encoded string to complete the `Authorization` header value.
+    - Example: `Authorization: Basic eW91cl9hcGlfa2V5X2hlcmU6`
 
 ## **REST API**
 
@@ -85,7 +85,7 @@ This API manages metadata for LiveStyler, such as filters. The base URL for all 
     
 **cURL Example:**
 
-The following is a complete example of calling the API to retrieve the filter list using `cURL`.
+Here is a complete example of calling the API to retrieve the filter list using `cURL`.
 
 ```bash
 curl --location 'https://api-paoqov032tbx.livestyler.ai/filter-category/active' \

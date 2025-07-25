@@ -1,23 +1,23 @@
 # LiveStyler SDK for Android
 
-Android용 애플리케이션에 LiveStyler 기능을 적용하기 위한 SDK입니다.
-SDK는 카메라를 초기화하여 촬영된 영상을 전송하고 영상처리가 완료된 영상을 수신하여 보여주는 기능을 제공합니다.
+This SDK is for applying LiveStyler features to Android applications.
+The SDK provides functionality to initialize the camera, send the captured video, and receive and display the video after processing is complete.
 
-## 시작하기
+## Getting Started
 
-### 요구사항
+### Requirements
 
-- Android 9.0 이상
-- AGP 8.0 이상
-- Kotlin 1.7.21 이상
+- Android 9.0 or higher
+- AGP 8.0 or higher
+- Kotlin 1.7.21 or higher
 
-### 주요기능
+### Key Features
 
-- 시그널 채널을 통한 영상 변환을 제어
-- 카메라의 영상을 WebRTC 서버로 전송
-- 필터가 적용된 영상을 수신
+- Control video conversion through a signaling channel
+- Send camera video to a WebRTC server
+- Receive video with filters applied
 
-### 설치
+### Installation
 
 #### Gradle
 
@@ -39,93 +39,93 @@ dependencies {
 }
 ```
 
-그리고 다음 명령을 실행합니다:
+Then execute the following command:
 
 ```bash
 $ ./gradlew build --refresh-dependencies
 ```
 
-## 사용방법
+## How to Use
 
-### 쉬운 사용
+### Easy Usage
 
-기능이 사전에 구현된 `StreamFragment` 사용할 수 있습니다.
+You can use the pre-implemented `StreamFragment`.
 
 ```kotlin
-// 초기화
+// Initialization
 val args = Bundle().apply {
-    putString("credential", "{credential}")                             // 관리자 페이지를 통해 발급 받은 인증 토큰
-    putString("apiEndpoint", "{apiEndpoint}")                           // 서비스의 정보를 얻을 수 있는 API 서버
-    putString("signalEndpoint", "{signalEndpoint}")                     // 백엔드와 인증 정보를 주고 받는 시그널 채널 엔드포인트 주소
+    putString("credential", "{credential}")                             // Authentication token issued through the admin page
+    putString("apiEndpoint", "{apiEndpoint}")                           // API server to get service information
+    putString("signalEndpoint", "{signalEndpoint}")                     // Signaling channel endpoint address for exchanging authentication information with the backend
     putParcelableArrayList(
-        "serverEndpoints",                                              // STUN 서버와 TURN 서버를 설정, STUN 서버는 제공된 구글 STUN 사용 권장
+        "serverEndpoints",                                              // Set STUN and TURN servers, recommended to use the provided Google STUN server
         arrayListOf(
             Bundle().apply {
                 putString("type", "stun")
-                putString("endpoint", "stun:stun.l.google.com:19302")   // STUN 서버 주소
+                putString("endpoint", "stun:stun.l.google.com:19302")   // STUN server address
             },
             Bundle().apply {
                 putString("type", "turn")
-                putString("endpoint", "{turnEndpoint}")                 // TURN 서버 주소
-                putString("username", "{username}")                     // TURN 서버 인증 정보
-                putString("password", "{password}")                     // TURN 서버 인증 정보
+                putString("endpoint", "{turnEndpoint}")                 // TURN server address
+                putString("username", "{username}")                     // TURN server authentication information
+                putString("password", "{password}")                     // TURN server authentication information
             },
             Bundle().apply {
                 putString("type", "turn")
-                putString("endpoint", "{turnEndpoint}")                 // TURN 서버 주소
-                putString("username", "{username}")                     // TURN 서버 인증 정보
-                putString("secret", "{secret}")                         // TURN 서버 인증 정보
+                putString("endpoint", "{turnEndpoint}")                 // TURN server address
+                putString("username", "{username}")                     // TURN server authentication information
+                putString("secret", "{secret}")                         // TURN server authentication information
             }
         )
     )
-    putString("iceTransportsType", "{iceTransportsType}")           // All, NoHost, Relay 중 하나의 값을 사용하여 Peep-to-peer 연결 방식을 지정
+    putString("iceTransportsType", "{iceTransportsType}")           // Specify the Peer-to-peer connection method using one of the values: All, NoHost, Relay
 }
 
 findNavController().navigate(R.id.action_HostFragment_to_StreamFragment, args = args)
 ```
 
-### 직접 개발
+### Custom Development
 
-쉬운 사용에서는 제공하지 않는 추가적인 기능, UI/UX의 임의 구현을 위해서는 직접 구현하는 것이 좋습니다.
+For additional features not provided in the easy usage, or for custom implementation of UI/UX, it is recommended to implement it yourself.
 
-사용 방법은 후술할 [주요 기능 명세](#주요-기능-명세)를 참고하여 주시기 바랍니다.
+Please refer to the [Key Feature Specifications](#key-feature-specifications) described later for usage instructions.
 
-화면의 디자인과 기능을 변경하고자 하면 [`StreamFragment.kt` 파일](android-streamfragmentkt.md)과 [`fragment_stream.xml` 파일](android-fragmentstreamxml.md)을 참고하여 사용하세요.
+If you want to change the design and functionality of the screen, please refer to the [`StreamFragment.kt` file](android-streamfragmentkt.md) and the [`fragment_stream.xml` file](android-fragmentstreamxml.md).
 
-세부적인 API 명세는 [Android APIs](reference-kotlin.md)를 참고하여 주시기 바랍니다.
+For detailed API specifications, please refer to [Android APIs](reference-kotlin.md).
 
-## 주요 기능 명세
+## Key Feature Specifications
 
-API를 사용하면 화면의 기능을 직접 만들어 구현할 수 있습니다.
+You can create and implement screen functions yourself using the API.
 
 ### LiveStylerManager
 
 ```kotlin
-// 초기화
-// accessKey, signalEndpoint, serverEndpoints는 args를 만들때 사용한 값과 같은 값을 사용
+// Initialization
+// Use the same values for accessKey, signalEndpoint, serverEndpoints as used when creating args
 val liveStylerManager: LiveStylerManager = LiveStylerManager(
     "{credential}",
     "{apiEndpoint}",
     "{signalEndpoint}",
     listOf( {serverEndpoints} ),
-    "{iceTransportsType}"
+    "{iceTransportsType}"
 )
 ```
 
 #### onCreate()
 
-초기화가 될 때 필요한 작업이 이루어집니다.
+Performs necessary tasks during initialization.
 
 ```kotlin
 override fun onCreate(saveInstance?: Bundle) {
     super.onCreate(saveInstance)
-    liveStyleManager.onCreate(requrieContext(), this)
+    liveStyleManager.onCreate(requireContext(), this)
 }
 ```
 
 #### onCreateView()
 
-뷰가 생성되기 전에 필요한 작업이 이루어집니다.
+Performs necessary tasks before the view is created.
 
 ```kotlin
 override fun onCreateView(
@@ -140,8 +140,8 @@ override fun onCreateView(
 
 #### onViewCreated()
 
-만들어진 뷰를 매니저로 전달합니다.
-카메라 프리뷰 또는 렌더 프리뷰를 선택적으로 넣을 수 있습니다.
+Passes the created view to the manager.
+You can selectively add a camera preview or a render preview.
 
 ```kotlin
 override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -152,7 +152,7 @@ override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
 
 #### onPause()
 
-카메라 캡처를 중단합니다.
+Stops camera capture.
 
 ```kotlin
 override fun onPause() {
@@ -163,8 +163,8 @@ override fun onPause() {
 
 #### onResume()
 
-카메라 캡처를 다시 시작합니다.
-시그널 서버 연결 및 WebRTC 연결을 다시 설정합니다.
+Resumes camera capture.
+Resets the signal server connection and WebRTC connection.
 
 ```kotlin
 override fun onResume() {
@@ -175,8 +175,8 @@ override fun onResume() {
 
 #### onStop()
 
-카메라 리소스를 릴리즈 반환합니다.
-시그널 서버와 WebRTC 연결을 끊고 대기합니다.
+Releases camera resources.
+Disconnects from the signal server and WebRTC and waits.
 
 ```kotlin
 override fun onStop() {
@@ -187,7 +187,7 @@ override fun onStop() {
 
 #### onDestroy()
 
-시그널 서버 연결과 WebRTC 연결을 완전히 종료합니다.
+Completely terminates the signal server connection and WebRTC connection.
 
 ```kotlin
 override fun onDestroyView() {
@@ -199,30 +199,30 @@ override fun onDestroyView() {
 
 #### changeFilter(String)
 
-WebRTC 서버에 설정된 필터를 변경합니다.
+Changes the filter set on the WebRTC server.
 
 ```kotlin
 liveStylerManager.changeFilter("{filter_id}")
 ```
 
-- filter_id: API를 통해 전달 받은 필터 리스트 중에 변경을 원하는 필터의 ID
+- filter_id: The ID of the filter you want to change from the filter list received via the API.
 
 #### switchCamera(String)
 
-전달 받은 카메라 ID로 전환합니다.
-카메라 ID는 CameraManager를 통해 얻을 수 있습니다.
+Switches to the camera with the received camera ID.
+The camera ID can be obtained through the CameraManager.
 
 ```kotlin
 liveStylerManager.switchCamera("{camera_id}")
 ```
 
-- camera_id: CamaraManager(안드로이드 시스템 도구)를 통해 얻은 카메라의 ID
+- camera_id: The ID of the camera obtained through CameraManager (Android system tool).
 
 #### updateFilterCategory()
 
-API 서버에서 필터, 카테고리 리스트를 새로 받아 업데이트합니다.
-필터 리스트는 시그널 서버에 접속하면 자동으로 업데이트됩니다.
-갱신된 리스트는 SignalStateListener를 통해 전달됩니다.
+Updates the filter and category lists by fetching them from the API server.
+The filter list is automatically updated upon connecting to the signal server.
+The updated list is delivered through the SignalStateListener.
 
 ```kotlin
 liveStylerManager.updateFilterCategory()
@@ -230,15 +230,15 @@ liveStylerManager.updateFilterCategory()
 
 #### changeModel(String)
 
-전달 받은 모델 이름으로 필터 모델을 변경합니다.
-모델 이름은 onReceivedFilterList() 콜백을 통해 얻은 필터의 정보(FilterCategoryData)에서 모델 이름을 찾아서 사용합니다.
+Changes the filter model to the received model name.
+Use the model name found in the filter information (FilterCategoryData) obtained through the onReceivedFilterList() callback.
 
 ```kotlin
 liveStylerManager.changeModel("{model_name}")
 ```
 
-- model_name: FilterCategoryData의 모델 이름
+- model_name: The model name from FilterCategoryData.
 
-> Android SDK에는 API를 통해 모델 리스트를 가져오는 처리가 포함되어 있습니다.<br/>
-> 하지만, SDK에 반영된 API는 LiveStyler 제공 서비스이므로 실제 서비스와 차이가 있을 수 있습니다.<br/>
-> API는 서비스의 구성에 따라 달라질 수 있으므로 API 가이드를 참고하여 모델 리스트를 확인하여 사용하시기 바랍니다.
+> The Android SDK includes processing to fetch the model list via the API.<br/>
+> However, the API reflected in the SDK is a service provided by LiveStyler, so there may be differences from the actual service.<br/>
+> The API may vary depending on the service configuration, so please refer to the API guide to check and use the model list.
