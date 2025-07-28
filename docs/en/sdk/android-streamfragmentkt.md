@@ -1,4 +1,4 @@
-# StreamFragment의 소스코드
+# StreamFragment.kt Source Code
 
 ```kotlin
 class StreamFragment : Fragment(), SignalStateListener, RendererStateListener {
@@ -83,7 +83,7 @@ class StreamFragment : Fragment(), SignalStateListener, RendererStateListener {
         super.onDestroyView()
     }
 
-    /* SignalStateListener 인터페이스 메소드 구현 */
+    /* SignalStateListener Implements Methods */
     override fun onServerPreparing() {
         TODO("Not yet implemented")
     }
@@ -100,7 +100,7 @@ class StreamFragment : Fragment(), SignalStateListener, RendererStateListener {
         TODO("Not yet implemented")
     }
 
-    /* RendererStateListener 인터페이스 메소드 구현 */
+    /* RendererStateListener Implements Methods */
     override fun onLocalPreparing() {
         TODO("Not yet implemented")
     }
