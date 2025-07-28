@@ -1,4 +1,4 @@
-# StreamViewController의 소스코드
+# StreamViewController Source Code
 
 ```swift
 import AVFoundation
@@ -65,7 +65,7 @@ public class StreamViewController: UIViewController {
 
     private func setupLabel() {
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.text = "영상"
+        label.text = "Video"
         label.font = UIFont.systemFont(
             ofSize: appConstants.ui.titleFontSize,
             weight: .bold

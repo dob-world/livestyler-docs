@@ -1,4 +1,4 @@
-# steam_page.dart 의 소스코드
+# stream_page.dart Source Code
 
 ```dart
 import 'dart:async';
@@ -22,6 +22,7 @@ import 'package:livestyler_web_demo/sdk/stream/stream_stats_data.dart';
 import 'package:livestyler_web_demo/sdk/stream/stun_turn_server.dart';
 import 'package:livestyler_web_demo/sdk/util/layout_support.dart';
 
+/// Page responsible for real-time streaming and filter application
 class StreamPage extends StatefulWidget {
   final _id = Random().nextInt(2^256);
 
@@ -33,8 +34,10 @@ class StreamPage extends StatefulWidget {
   State<StreamPage> createState() => _StreamPageState();
 }
 
-// 1. SingleTickerProviderStateMixin 추가
+/// Class that manages StreamPage state
+/// Implements SignalStateListener and DataChannelStateListener to monitor communication status
 class _StreamPageState extends State<StreamPage> with SingleTickerProviderStateMixin implements SignalStateListener, DataChannelStateListener {
+  // GlobalKeys for UI components
   final _topAreaKey = GlobalKey();
   final _topLogoKey = GlobalKey();
   final _topTimerKey = GlobalKey();
@@ -44,6 +47,7 @@ class _StreamPageState extends State<StreamPage> with SingleTickerProviderStateM
   final _stylePanelBackwardKey = GlobalKey();
   final _stylePanelForwardKey = GlobalKey();
 
+  // WebRTC video renderers
   final _localRenderer = RTCVideoRenderer();
   final _remoteRenderer = RTCVideoRenderer();
 
@@ -52,40 +56,22 @@ class _StreamPageState extends State<StreamPage> with SingleTickerProviderStateM
 
   final _previewContainerKey = GlobalKey();
   final ValueNotifier<bool> _showPreview = ValueNotifier(false);
-  final ValueNotifier<bool> _showStatsInfo = ValueNotifier(false);
 
-  // web rtc
+  // LiveStyler manager and statistics data
   late LiveStylerManager _liveStylerManager;
-  final ValueNotifier<StatsData?> _receivedStatsData = ValueNotifier(null);
 
-  // devices
-  final List<MediaDeviceInfo> _devices = [];
-
-  // filter list
+  // Filter-related state
   final ValueNotifier<List<FilterCategoryData>> _filterCategoryList = ValueNotifier([]);
   final ValueNotifier<int> _selectedCategoryIndex = ValueNotifier(0);
-  final ValueNotifier<String?> _selectedModelName = ValueNotifier(null);
-
-  // timer
-  static const _usageTimeoutMs = 3 * 60 * 1000; //Maximum usage timeout(ms)
-  final _runningStopwatch = Stopwatch();
-  late Timer _runningTimer;
-  final ValueNotifier<int> _remainTimeout = ValueNotifier(_usageTimeoutMs);
+  final ValueNotifier<String?> _selectedModelName = ValueNotifier('romatic');
 
   @override
   void initState() {
     super.initState();
-    _loadSaveState();
     _initManager();
-    _initDeviceInfos();
-    _initRunningTimer();
   }
 
-  void _loadSaveState() {
-    _selectedModelName.value = html.window.sessionStorage['selected_model_name'] ?? appEnv.credential ?? 'romantic';
-    debugPrint('[StreamPage] loadSaveState selectedModelName : ${_selectedModelName.value}');
-  }
-
+  /// Initialize and configure LiveStyler manager
   void _initManager() {
     _liveStylerManager = LiveStylerManager(
       credential: AppEnv.credential,
@@ -105,73 +91,9 @@ class _StreamPageState extends State<StreamPage> with SingleTickerProviderStateM
       signalStateListener: this,
       rendererStateListener: null,
       dataChannelStateListener: this,
-      onReceiveStatsData: onReceiveStatsData,
     );
     _liveStylerManager.initialize();
     _liveStylerManager.updateFilterCategory();
-  }
-
-  Future<void> _initDeviceInfos() async {
-    final mediaDevices = await navigator.mediaDevices.enumerateDevices();
-    _devices.clear();
-
-    for (final device in mediaDevices) {
-      if (device.kind == 'videoinput') {
-        _devices.add(device);
-      }
-    }
-
-    for (final deviceInfo in _devices) {
-      debugPrint('[StreamPage] deviceInfo ${deviceInfo.kind} ${deviceInfo.label} ${deviceInfo.deviceId}');
-    }
-
-    if (mounted) {
-      setState(() {
-        if (_devices.isNotEmpty) {
-          _liveStylerManager.switchCamera(_devices.first.deviceId);
-        }
-      });
-    } else {
-      if (_devices.isNotEmpty) {
-        _liveStylerManager.switchCamera(_devices.first.deviceId);
-      }
-    }
-  }
-
-  void _initRunningTimer() {
-    _runningTimer = Timer.periodic(const Duration(milliseconds: 500), (timer) {
-      final elapseMs = _runningStopwatch.elapsedMilliseconds;
-      final remain = _usageTimeoutMs - elapseMs;
-      final remainDuration = Duration(milliseconds: remain);
-
-      _remainTimeout.value = (remain < 0) ? 0 : remain;
-      if (remain < 0) {
-        _stopRunning();
-      }
-    });
-  }
-
-  void _startRunning() {
-    if (!_runningStopwatch.isRunning) {
-      if (appEnv.onTrialStarted != null) {
-        js.context.callMethod(appEnv.onTrialStarted!);
-      }
-    }
-    _runningStopwatch.start();
-  }
-
-  void _stopRunning() {
-    if (_runningStopwatch.isRunning) {
-      if (appEnv.onTrialEnded != null) {
-        js.context.callMethod(appEnv.onTrialEnded!);
-      }
-    }
-    _runningStopwatch.stop();
-  }
-
-  void _resetRunning() {
-    _runningStopwatch.stop();
-    _remainTimeout.value = _usageTimeoutMs;
   }
 
   @override
@@ -180,13 +102,11 @@ class _StreamPageState extends State<StreamPage> with SingleTickerProviderStateM
     super.dispose();
   }
 
-  void onReceiveStatsData(StatsData statsData) {
-    _receivedStatsData.value = statsData;
-  }
-
+  /// Top area (logo and timer) UI composition
   Widget _topArea(BuildContext context, Size screenSize) {
     final layoutKind = screenSize.width.layoutKind;
 
+    // Size and padding settings according to layout type
     late double layoutHeight;
     late EdgeInsets padding;
     late Size logoSize;
@@ -246,75 +166,16 @@ class _StreamPageState extends State<StreamPage> with SingleTickerProviderStateM
             ),
           ),
           const Spacer(),
-          Expanded(
-            flex: 0,
-            child: ClipRRect(
-              borderRadius: BorderRadius.circular(22),
-              child: BackdropFilter(
-                filter: ImageFilter.blur(sigmaX: 8, sigmaY: 8),
-                child: Container(
-                  width: 128,
-                  height: 44,
-                  padding: const EdgeInsets.symmetric(vertical: 12, horizontal: 23,),
-                  decoration: const BoxDecoration(
-                    color: Color(0x66514C65),
-                    borderRadius: BorderRadius.all(Radius.circular(22)),
-                  ),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    children: [
-                      Expanded(
-                        flex: 0,
-                        child: SizedBox(
-                          width: 20,
-                          height: 20,
-                          child: SvgPicture.asset(''
-                            'images/svg/ic_timer.svg',
-                            width: 20,
-                            height: 20,
-                          ),
-                        ),
-                      ),
-                      const SizedBox(
-                        width: 6,
-                      ),
-                      Expanded(
-                        flex: 0,
-                        child: ValueListenableBuilder(
-                          valueListenable: _remainTimeout,
-                          builder: (context, remain, child) {
-                            final remainDuration = Duration(milliseconds: remain);
-                            final remainString = '${'${remainDuration.inMinutes}'.padLeft(2, '0')}'
-                                ':'
-                                '${'${remainDuration.inSeconds % 60}'.padLeft(2, '0')}';
-                            return Text(
-                              remainString,
-                              style: Theme.of(context).textTheme.labelMedium?.copyWith(
-                                color: const Color(0xffDFE4EA),
-                                fontWeight: FontWeight.w500,
-                                fontSize: 20,
-                                height: 1,
-                                letterSpacing: 0,
-                              ),
-                            );
-                          },
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-              ),
-            ),
-          ),
         ]
       ),
     );
   }
 
+  /// Style panel (filter category and model selection) UI composition
   Widget _stylePanel(BuildContext context, Size screenSize) {
     final layoutKind = screenSize.width.layoutKind;
 
+    // Style panel settings according to layout type
     late EdgeInsets stylePanelMargin;
     late BoxDecoration stylePanelDecoration;
     late BoxConstraints stylePanelConstraints;
@@ -587,50 +448,6 @@ class _StreamPageState extends State<StreamPage> with SingleTickerProviderStateM
           const SizedBox(
             width: 32,
           ),
-          ValueListenableBuilder<bool>(
-            valueListenable: _showStatsInfo,
-            builder: (context, isShow, child) {
-              return Row(
-                mainAxisAlignment: MainAxisAlignment.start,
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: [
-                  Text(
-                    'Stats',
-                    style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                      fontWeight: FontWeight.w700,
-                      color: Colors.white,
-                    ),
-                  ),
-                  const SizedBox(
-                    width: 8,
-                  ),
-                  Text(
-                    'Off',
-                    style: Theme.of(context).textTheme.labelSmall?.copyWith(
-                      fontWeight: FontWeight.w700,
-                      color: Colors.white54,
-                    ),
-                  ),
-                  Switch.adaptive(
-                    value: isShow,
-                    onChanged: (value) {
-                      _showStatsInfo.value = value;
-                    },
-                  ),
-                  Text(
-                    'On',
-                    style: Theme.of(context).textTheme.labelSmall?.copyWith(
-                      fontWeight: FontWeight.w700,
-                      color: Colors.white,
-                    ),
-                  )
-                ],
-              );
-            },
-          ),
-          const SizedBox(
-            width: 32,
-          ),
         ],
       ) : null,
       body: SizedBox.expand(
@@ -720,61 +537,6 @@ class _StreamPageState extends State<StreamPage> with SingleTickerProviderStateM
                     child: _stylePanel(context, windowSize),
                   ),
                 ),
-
-                // information layer
-                Positioned(
-                  left: 80,
-                  top: 80,
-                  right: 80,
-                  bottom: 80,
-                  child: Align(
-                    alignment: Alignment.topRight,
-                    child: ValueListenableBuilder<bool>(
-                      valueListenable: _showStatsInfo,
-                      builder: (context, isShow, child) {
-                        return Visibility(
-                          visible: isShow,
-                          child: Column(
-                            mainAxisAlignment: MainAxisAlignment.start,
-                            crossAxisAlignment: CrossAxisAlignment.end,
-                            children: [
-                              Text(
-                                serverState.name,
-                                style: Theme.of(context).textTheme.labelSmall?.copyWith(
-                                  fontWeight: FontWeight.w700,
-                                  color: Colors.white,
-                                ),
-                              ),
-                              ValueListenableBuilder(
-                                valueListenable: _receivedStatsData,
-                                builder: (context, statsData, child) {
-                                  if (statsData == null) {
-                                    return const SizedBox();
-                                  }
-
-                                  final statsBuffer = StringBuffer();
-                                  statsBuffer
-                                    ..writeln('${statsData.mediaSourceInfo?.width}x${statsData.mediaSourceInfo?.height}@${statsData.mediaSourceInfo?.framesPerSecond?.toStringAsFixed(2)} / ${statsData.mediaSourceInfo?.device?.label}')
-                                    ..writeln('[TX] ${statsData.outboundInfo?.bitrate?.toStringAsFixed(2)}kbps ${statsData.outboundInfo?.width}x${statsData.outboundInfo?.height}@${statsData.outboundInfo?.framesPerSecond?.toStringAsFixed(2)} / ${statsData.outboundInfo?.codec}')
-                                    ..writeln('[RX] ${statsData.inboundInfo?.bitrate?.toStringAsFixed(2)}kbps ${statsData.inboundInfo?.width}x${statsData.inboundInfo?.height}@${statsData.inboundInfo?.framesPerSecond?.toStringAsFixed(2)} / ${statsData.inboundInfo?.codec}');
-
-                                  return Text(
-                                    statsBuffer.toString(),
-                                    style: Theme.of(context).textTheme.labelSmall?.copyWith(
-                                      fontWeight: FontWeight.w700,
-                                      color: Colors.white,
-                                    ),
-                                    textAlign: TextAlign.right,
-                                  );
-                                },
-                              ),
-                            ],
-                          ),
-                        );
-                      },
-                    ),
-                  ),
-                ),
               ],
             );
           },
@@ -783,15 +545,15 @@ class _StreamPageState extends State<StreamPage> with SingleTickerProviderStateM
     );
   }
 
-  // ... (SignalStateListener 구현부는 그대로 유지)
+  // SignalStateListener implementation
   @override
   void onServerPreparing() {
-    // TODO: implement onServerPreparing
+    // Handle server preparing state
   }
 
   @override
   void onServerReady() {
-    // TODO: implement onServerReady
+    // Handle server ready state
   }
 
   @override
@@ -802,23 +564,24 @@ class _StreamPageState extends State<StreamPage> with SingleTickerProviderStateM
 
   @override
   void onErrorFilterList(String? error) {
-    // TODO: implement onErrorFilterList
+    // Handle filter list load error
   }
 
-  // DataChannelStateListener
+  // DataChannelStateListener implementation
   @override
   void onBufferedAmountChange(int previousAmount) {
-    // TODO: implement onBufferedAmountChange
+    // Handle data channel buffer amount change
   }
 
   @override
   void onDataChannelMessage(RTCDataChannel? dataChannel, String? message) {
-    // TODO: implement onDataChannelMessage
+    // Handle data channel message reception
   }
 
   @override
   void onDataChannelStateChange(RTCDataChannelState state) {
     debugPrint('[DataChannelStateListener] onDataChannelStateChange $state');
+    // Apply recently selected model when data channel opens
     if (state == RTCDataChannelState.RTCDataChannelOpen) {
       final recentlyModelName = html.window.sessionStorage['selected_model_name'] ?? 'romantic';
       _liveStylerManager.changeModel(recentlyModelName);
@@ -826,6 +589,7 @@ class _StreamPageState extends State<StreamPage> with SingleTickerProviderStateM
   }
 }
 
+/// Filter category header item widget
 class _StyleHeaderItemWidget extends StatelessWidget {
   final FilterCategoryData categoryData;
   final int index;
@@ -880,6 +644,7 @@ class _StyleHeaderItemWidget extends StatelessWidget {
   }
 }
 
+/// Filter model item widget
 class _StyleModelItemWidget extends StatelessWidget {
   final FilterItemData filterData;
   final int index;
@@ -961,44 +726,6 @@ class _StyleModelItemWidget extends StatelessWidget {
         ),
       ),
     );
-  }
-}
-
-class _CircularRevealClipper extends CustomClipper<Path> {
-  final double fraction;
-  final Alignment? centerAlignment;
-  final Offset? centerOffset;
-
-  _CircularRevealClipper({
-    required this.fraction,
-    this.centerAlignment,
-    this.centerOffset,
-  });
-
-  @override
-  Path getClip(Size size) {
-    final center = centerAlignment?.alongSize(size) ??
-        centerOffset ??
-        Offset(size.width / 2, size.height / 2);
-    const minRadius = 0.0;
-    final maxRadius = _calculateMaxRadius(size, center);
-
-    return Path()
-      ..addOval(
-        Rect.fromCircle(
-          center: center,
-          radius: minRadius + (maxRadius - minRadius) * fraction,
-        ),
-      );
-  }
-
-  @override
-  bool shouldReclip(CustomClipper<Path> oldClipper) => true;
-
-  double _calculateMaxRadius(Size size, Offset center) {
-    final w = max(center.dx, size.width - center.dx);
-    final h = max(center.dy, size.height - center.dy);
-    return sqrt(w * w + h * h);
   }
 }
 ```

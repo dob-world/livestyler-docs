@@ -1,4 +1,4 @@
-# steam_page.dart 의 소스코드
+# stream_page.dart 소스코드
 
 ```dart
 import 'dart:async';
@@ -22,6 +22,7 @@ import 'package:livestyler_web_demo/sdk/stream/stream_stats_data.dart';
 import 'package:livestyler_web_demo/sdk/stream/stun_turn_server.dart';
 import 'package:livestyler_web_demo/sdk/util/layout_support.dart';
 
+/// 실시간 스트리밍과 필터 적용을 담당하는 페이지
 class StreamPage extends StatefulWidget {
   final _id = Random().nextInt(2^256);
 
@@ -33,8 +34,10 @@ class StreamPage extends StatefulWidget {
   State<StreamPage> createState() => _StreamPageState();
 }
 
-// 1. SingleTickerProviderStateMixin 추가
+/// StreamPage의 상태를 관리하는 클래스
+/// SignalStateListener와 DataChannelStateListener를 구현하여 통신 상태를 모니터링
 class _StreamPageState extends State<StreamPage> with SingleTickerProviderStateMixin implements SignalStateListener, DataChannelStateListener {
+  // UI 컴포넌트의 GlobalKey들
   final _topAreaKey = GlobalKey();
   final _topLogoKey = GlobalKey();
   final _topTimerKey = GlobalKey();
@@ -44,6 +47,7 @@ class _StreamPageState extends State<StreamPage> with SingleTickerProviderStateM
   final _stylePanelBackwardKey = GlobalKey();
   final _stylePanelForwardKey = GlobalKey();
 
+  // WebRTC 비디오 렌더러
   final _localRenderer = RTCVideoRenderer();
   final _remoteRenderer = RTCVideoRenderer();
 
@@ -52,40 +56,22 @@ class _StreamPageState extends State<StreamPage> with SingleTickerProviderStateM
 
   final _previewContainerKey = GlobalKey();
   final ValueNotifier<bool> _showPreview = ValueNotifier(false);
-  final ValueNotifier<bool> _showStatsInfo = ValueNotifier(false);
 
-  // web rtc
+  // LiveStyler 관리자 및 통계 데이터
   late LiveStylerManager _liveStylerManager;
-  final ValueNotifier<StatsData?> _receivedStatsData = ValueNotifier(null);
 
-  // devices
-  final List<MediaDeviceInfo> _devices = [];
-
-  // filter list
+  // 필터 관련 상태
   final ValueNotifier<List<FilterCategoryData>> _filterCategoryList = ValueNotifier([]);
   final ValueNotifier<int> _selectedCategoryIndex = ValueNotifier(0);
-  final ValueNotifier<String?> _selectedModelName = ValueNotifier(null);
-
-  // timer
-  static const _usageTimeoutMs = 3 * 60 * 1000; //Maximum usage timeout(ms)
-  final _runningStopwatch = Stopwatch();
-  late Timer _runningTimer;
-  final ValueNotifier<int> _remainTimeout = ValueNotifier(_usageTimeoutMs);
+  final ValueNotifier<String?> _selectedModelName = ValueNotifier('romatic');
 
   @override
   void initState() {
     super.initState();
-    _loadSaveState();
     _initManager();
-    _initDeviceInfos();
-    _initRunningTimer();
   }
 
-  void _loadSaveState() {
-    _selectedModelName.value = html.window.sessionStorage['selected_model_name'] ?? appEnv.credential ?? 'romantic';
-    debugPrint('[StreamPage] loadSaveState selectedModelName : ${_selectedModelName.value}');
-  }
-
+  /// LiveStyler 매니저를 초기화하고 설정
   void _initManager() {
     _liveStylerManager = LiveStylerManager(
       credential: AppEnv.credential,
@@ -105,73 +91,9 @@ class _StreamPageState extends State<StreamPage> with SingleTickerProviderStateM
       signalStateListener: this,
       rendererStateListener: null,
       dataChannelStateListener: this,
-      onReceiveStatsData: onReceiveStatsData,
     );
     _liveStylerManager.initialize();
     _liveStylerManager.updateFilterCategory();
-  }
-
-  Future<void> _initDeviceInfos() async {
-    final mediaDevices = await navigator.mediaDevices.enumerateDevices();
-    _devices.clear();
-
-    for (final device in mediaDevices) {
-      if (device.kind == 'videoinput') {
-        _devices.add(device);
-      }
-    }
-
-    for (final deviceInfo in _devices) {
-      debugPrint('[StreamPage] deviceInfo ${deviceInfo.kind} ${deviceInfo.label} ${deviceInfo.deviceId}');
-    }
-
-    if (mounted) {
-      setState(() {
-        if (_devices.isNotEmpty) {
-          _liveStylerManager.switchCamera(_devices.first.deviceId);
-        }
-      });
-    } else {
-      if (_devices.isNotEmpty) {
-        _liveStylerManager.switchCamera(_devices.first.deviceId);
-      }
-    }
-  }
-
-  void _initRunningTimer() {
-    _runningTimer = Timer.periodic(const Duration(milliseconds: 500), (timer) {
-      final elapseMs = _runningStopwatch.elapsedMilliseconds;
-      final remain = _usageTimeoutMs - elapseMs;
-      final remainDuration = Duration(milliseconds: remain);
-
-      _remainTimeout.value = (remain < 0) ? 0 : remain;
-      if (remain < 0) {
-        _stopRunning();
-      }
-    });
-  }
-
-  void _startRunning() {
-    if (!_runningStopwatch.isRunning) {
-      if (appEnv.onTrialStarted != null) {
-        js.context.callMethod(appEnv.onTrialStarted!);
-      }
-    }
-    _runningStopwatch.start();
-  }
-
-  void _stopRunning() {
-    if (_runningStopwatch.isRunning) {
-      if (appEnv.onTrialEnded != null) {
-        js.context.callMethod(appEnv.onTrialEnded!);
-      }
-    }
-    _runningStopwatch.stop();
-  }
-
-  void _resetRunning() {
-    _runningStopwatch.stop();
-    _remainTimeout.value = _usageTimeoutMs;
   }
 
   @override
@@ -180,13 +102,11 @@ class _StreamPageState extends State<StreamPage> with SingleTickerProviderStateM
     super.dispose();
   }
 
-  void onReceiveStatsData(StatsData statsData) {
-    _receivedStatsData.value = statsData;
-  }
-
+  /// 상단 영역 (로고 및 타이머) UI 구성
   Widget _topArea(BuildContext context, Size screenSize) {
     final layoutKind = screenSize.width.layoutKind;
 
+    // 레이아웃 종류에 따른 크기 및 패딩 설정
     late double layoutHeight;
     late EdgeInsets padding;
     late Size logoSize;
@@ -246,75 +166,16 @@ class _StreamPageState extends State<StreamPage> with SingleTickerProviderStateM
             ),
           ),
           const Spacer(),
-          Expanded(
-            flex: 0,
-            child: ClipRRect(
-              borderRadius: BorderRadius.circular(22),
-              child: BackdropFilter(
-                filter: ImageFilter.blur(sigmaX: 8, sigmaY: 8),
-                child: Container(
-                  width: 128,
-                  height: 44,
-                  padding: const EdgeInsets.symmetric(vertical: 12, horizontal: 23,),
-                  decoration: const BoxDecoration(
-                    color: Color(0x66514C65),
-                    borderRadius: BorderRadius.all(Radius.circular(22)),
-                  ),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    children: [
-                      Expanded(
-                        flex: 0,
-                        child: SizedBox(
-                          width: 20,
-                          height: 20,
-                          child: SvgPicture.asset(''
-                            'images/svg/ic_timer.svg',
-                            width: 20,
-                            height: 20,
-                          ),
-                        ),
-                      ),
-                      const SizedBox(
-                        width: 6,
-                      ),
-                      Expanded(
-                        flex: 0,
-                        child: ValueListenableBuilder(
-                          valueListenable: _remainTimeout,
-                          builder: (context, remain, child) {
-                            final remainDuration = Duration(milliseconds: remain);
-                            final remainString = '${'${remainDuration.inMinutes}'.padLeft(2, '0')}'
-                                ':'
-                                '${'${remainDuration.inSeconds % 60}'.padLeft(2, '0')}';
-                            return Text(
-                              remainString,
-                              style: Theme.of(context).textTheme.labelMedium?.copyWith(
-                                color: const Color(0xffDFE4EA),
-                                fontWeight: FontWeight.w500,
-                                fontSize: 20,
-                                height: 1,
-                                letterSpacing: 0,
-                              ),
-                            );
-                          },
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-              ),
-            ),
-          ),
         ]
       ),
     );
   }
 
+  /// 스타일 패널 (필터 카테고리 및 모델 선택) UI 구성
   Widget _stylePanel(BuildContext context, Size screenSize) {
     final layoutKind = screenSize.width.layoutKind;
 
+    // 레이아웃 종류에 따른 스타일 패널 설정
     late EdgeInsets stylePanelMargin;
     late BoxDecoration stylePanelDecoration;
     late BoxConstraints stylePanelConstraints;
@@ -587,50 +448,6 @@ class _StreamPageState extends State<StreamPage> with SingleTickerProviderStateM
           const SizedBox(
             width: 32,
           ),
-          ValueListenableBuilder<bool>(
-            valueListenable: _showStatsInfo,
-            builder: (context, isShow, child) {
-              return Row(
-                mainAxisAlignment: MainAxisAlignment.start,
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: [
-                  Text(
-                    'Stats',
-                    style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                      fontWeight: FontWeight.w700,
-                      color: Colors.white,
-                    ),
-                  ),
-                  const SizedBox(
-                    width: 8,
-                  ),
-                  Text(
-                    'Off',
-                    style: Theme.of(context).textTheme.labelSmall?.copyWith(
-                      fontWeight: FontWeight.w700,
-                      color: Colors.white54,
-                    ),
-                  ),
-                  Switch.adaptive(
-                    value: isShow,
-                    onChanged: (value) {
-                      _showStatsInfo.value = value;
-                    },
-                  ),
-                  Text(
-                    'On',
-                    style: Theme.of(context).textTheme.labelSmall?.copyWith(
-                      fontWeight: FontWeight.w700,
-                      color: Colors.white,
-                    ),
-                  )
-                ],
-              );
-            },
-          ),
-          const SizedBox(
-            width: 32,
-          ),
         ],
       ) : null,
       body: SizedBox.expand(
@@ -720,61 +537,6 @@ class _StreamPageState extends State<StreamPage> with SingleTickerProviderStateM
                     child: _stylePanel(context, windowSize),
                   ),
                 ),
-
-                // information layer
-                Positioned(
-                  left: 80,
-                  top: 80,
-                  right: 80,
-                  bottom: 80,
-                  child: Align(
-                    alignment: Alignment.topRight,
-                    child: ValueListenableBuilder<bool>(
-                      valueListenable: _showStatsInfo,
-                      builder: (context, isShow, child) {
-                        return Visibility(
-                          visible: isShow,
-                          child: Column(
-                            mainAxisAlignment: MainAxisAlignment.start,
-                            crossAxisAlignment: CrossAxisAlignment.end,
-                            children: [
-                              Text(
-                                serverState.name,
-                                style: Theme.of(context).textTheme.labelSmall?.copyWith(
-                                  fontWeight: FontWeight.w700,
-                                  color: Colors.white,
-                                ),
-                              ),
-                              ValueListenableBuilder(
-                                valueListenable: _receivedStatsData,
-                                builder: (context, statsData, child) {
-                                  if (statsData == null) {
-                                    return const SizedBox();
-                                  }
-
-                                  final statsBuffer = StringBuffer();
-                                  statsBuffer
-                                    ..writeln('${statsData.mediaSourceInfo?.width}x${statsData.mediaSourceInfo?.height}@${statsData.mediaSourceInfo?.framesPerSecond?.toStringAsFixed(2)} / ${statsData.mediaSourceInfo?.device?.label}')
-                                    ..writeln('[TX] ${statsData.outboundInfo?.bitrate?.toStringAsFixed(2)}kbps ${statsData.outboundInfo?.width}x${statsData.outboundInfo?.height}@${statsData.outboundInfo?.framesPerSecond?.toStringAsFixed(2)} / ${statsData.outboundInfo?.codec}')
-                                    ..writeln('[RX] ${statsData.inboundInfo?.bitrate?.toStringAsFixed(2)}kbps ${statsData.inboundInfo?.width}x${statsData.inboundInfo?.height}@${statsData.inboundInfo?.framesPerSecond?.toStringAsFixed(2)} / ${statsData.inboundInfo?.codec}');
-
-                                  return Text(
-                                    statsBuffer.toString(),
-                                    style: Theme.of(context).textTheme.labelSmall?.copyWith(
-                                      fontWeight: FontWeight.w700,
-                                      color: Colors.white,
-                                    ),
-                                    textAlign: TextAlign.right,
-                                  );
-                                },
-                              ),
-                            ],
-                          ),
-                        );
-                      },
-                    ),
-                  ),
-                ),
               ],
             );
           },
@@ -783,15 +545,15 @@ class _StreamPageState extends State<StreamPage> with SingleTickerProviderStateM
     );
   }
 
-  // ... (SignalStateListener 구현부는 그대로 유지)
+  // SignalStateListener 구현
   @override
   void onServerPreparing() {
-    // TODO: implement onServerPreparing
+    // 서버 준비 중 상태 처리
   }
 
   @override
   void onServerReady() {
-    // TODO: implement onServerReady
+    // 서버 준비 완료 상태 처리
   }
 
   @override
@@ -802,23 +564,24 @@ class _StreamPageState extends State<StreamPage> with SingleTickerProviderStateM
 
   @override
   void onErrorFilterList(String? error) {
-    // TODO: implement onErrorFilterList
+    // 필터 목록 로드 오류 처리
   }
 
-  // DataChannelStateListener
+  // DataChannelStateListener 구현
   @override
   void onBufferedAmountChange(int previousAmount) {
-    // TODO: implement onBufferedAmountChange
+    // 데이터 채널 버퍼 양 변경 처리
   }
 
   @override
   void onDataChannelMessage(RTCDataChannel? dataChannel, String? message) {
-    // TODO: implement onDataChannelMessage
+    // 데이터 채널 메시지 수신 처리
   }
 
   @override
   void onDataChannelStateChange(RTCDataChannelState state) {
     debugPrint('[DataChannelStateListener] onDataChannelStateChange $state');
+    // 데이터 채널이 열리면 최근 선택된 모델 적용
     if (state == RTCDataChannelState.RTCDataChannelOpen) {
       final recentlyModelName = html.window.sessionStorage['selected_model_name'] ?? 'romantic';
       _liveStylerManager.changeModel(recentlyModelName);
@@ -826,6 +589,7 @@ class _StreamPageState extends State<StreamPage> with SingleTickerProviderStateM
   }
 }
 
+/// 필터 카테고리 헤더 아이템 위젯
 class _StyleHeaderItemWidget extends StatelessWidget {
   final FilterCategoryData categoryData;
   final int index;
@@ -880,6 +644,7 @@ class _StyleHeaderItemWidget extends StatelessWidget {
   }
 }
 
+/// 필터 모델 아이템 위젯
 class _StyleModelItemWidget extends StatelessWidget {
   final FilterItemData filterData;
   final int index;
@@ -961,44 +726,6 @@ class _StyleModelItemWidget extends StatelessWidget {
         ),
       ),
     );
-  }
-}
-
-class _CircularRevealClipper extends CustomClipper<Path> {
-  final double fraction;
-  final Alignment? centerAlignment;
-  final Offset? centerOffset;
-
-  _CircularRevealClipper({
-    required this.fraction,
-    this.centerAlignment,
-    this.centerOffset,
-  });
-
-  @override
-  Path getClip(Size size) {
-    final center = centerAlignment?.alongSize(size) ??
-        centerOffset ??
-        Offset(size.width / 2, size.height / 2);
-    const minRadius = 0.0;
-    final maxRadius = _calculateMaxRadius(size, center);
-
-    return Path()
-      ..addOval(
-        Rect.fromCircle(
-          center: center,
-          radius: minRadius + (maxRadius - minRadius) * fraction,
-        ),
-      );
-  }
-
-  @override
-  bool shouldReclip(CustomClipper<Path> oldClipper) => true;
-
-  double _calculateMaxRadius(Size size, Offset center) {
-    final w = max(center.dx, size.width - center.dx);
-    final h = max(center.dy, size.height - center.dy);
-    return sqrt(w * w + h * h);
   }
 }
 ```
