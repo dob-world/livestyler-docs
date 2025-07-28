@@ -48,8 +48,8 @@ nav:
       - iOS:
         - SDK: sdk/ios.md
         # - APIs: sdk/reference-swift.md
-      - Flutter:
-        - SDK: sdk/flutter.md
+      # - Flutter:
+        # - SDK: sdk/flutter.md
         # - APIs: sdk/reference-flutter.md
       - "Flutter Web":
         - SDK: sdk/flutter-web.md
