@@ -26,6 +26,7 @@ The SDK provides functionality to initialize the camera, send the captured video
 allprojects {
     repositories {
         ...
+        // Preparing storage.
         maven { url "https://repository.livestyler.io/..." }
         ...
     }
@@ -35,6 +36,7 @@ allprojects {
 ```groovy
 // app/build.gradle
 dependencies {
+    // Preparing storage.
     implementation "ai.livestyler:LiveStylerSDKAndroid:latest.release"
 }
 ```

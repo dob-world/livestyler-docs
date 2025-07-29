@@ -30,6 +30,7 @@ The SDK provides functionality to initialize the camera, transmit captured video
 
 dependencies:
     livestayler_sdk_flutter:
+        # Preparing storage.
         git: https://github.com/dob-world/LiveStylerSDKFlutter.git
         ref: 0.0.1
 ```

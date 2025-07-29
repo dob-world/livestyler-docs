@@ -26,9 +26,10 @@ SDK는 카메라를 초기화하여 촬영된 영상을 전송하고 영상처�
 #### Gradle
 
 ```yaml
-// pubspec.yml
+# pubspec.yml
 
 dependencies:
+    # 저장소 준비 중입니다.
     livestayler_sdk_flutter:
         git: https://github.com/dob-world/LiveStylerSDKFlutter.git
         ref: 0.0.1

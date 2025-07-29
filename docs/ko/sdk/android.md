@@ -26,6 +26,7 @@ SDK는 카메라를 초기화하여 촬영된 영상을 전송하고 영상처�
 allprojects {
     repositories {
         ...
+        // 저장소 준비 중입니다.
         maven { url "https://repository.livestyler.io/..." }
         ...
     }
@@ -35,6 +36,7 @@ allprojects {
 ```groovy
 // app/build.gradle
 dependencies {
+    // 저장소 준비 중입니다.
     implementation "ai.livestyler:LiveStylerSDKAndroid:latest.release"
 }
 ```

@@ -24,6 +24,7 @@ SDK는 카메라를 초기화하여 촬영된 영상을 전송하고 영상처�
 `Podfile`에 다음 라인을 추가합니다:
 
 ```ruby
+# 저장소 준비 중입니다.
 pod 'LiveStylerSDK', :git => 'https://github.com/dob-world/LiveStylerSDKiOS.git', :tag => '0.0.1'
 ```
 

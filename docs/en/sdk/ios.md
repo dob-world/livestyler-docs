@@ -24,6 +24,7 @@ The SDK provides functionality to initialize the camera, send the captured video
 Add the following line to your `Podfile`:
 
 ```ruby
+# Preparing storage.
 pod 'LiveStylerSDK', :git => 'https://github.com/dob-world/LiveStylerSDKiOS.git', :tag => '0.0.1'
 ```
 

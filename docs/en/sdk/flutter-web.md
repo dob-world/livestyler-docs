@@ -29,9 +29,10 @@ The SDK provides functionality to initialize the camera, send the captured video
 #### Pub
 
 ```yaml
-// pubspec.yaml
+# pubspec.yaml
 
 dependencies:
+  # Preparing storage.
   livestyler_sdk_flutter_web:
     git:
       url: https://github.com/dob-world/LiveStylerSDKFlutterWebDesktop.git
