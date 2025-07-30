@@ -24,9 +24,10 @@ SDK는 카메라를 초기화하여 촬영된 영상을 전송하고 영상처�
 `Podfile`에 다음 라인을 추가합니다:
 
 ```ruby
-# 저장소 준비 중입니다.
-pod 'LiveStylerSDK', :git => 'https://github.com/dob-world/LiveStylerSDKiOS.git', :tag => '0.0.1'
+pod 'LiveStylerSDK', :git => 'https://{ghp_token}@github.com/dob-world/livestyler-sdk-ios.git', :tag => '0.0.1'
 ```
+
+- `ghp_token`: Github에서 사용하는 개인 토큰입니다. 저장소에 접근 권한이 있는 계정의 개인 토큰을 사용하세요.
 
 그리고 다음 명령을 실행합니다:
 

@@ -26,17 +26,24 @@ SDK는 카메라를 초기화하여 촬영된 영상을 전송하고 영상처�
 allprojects {
     repositories {
         ...
-        // 저장소 준비 중입니다.
-        maven { url "https://repository.livestyler.io/..." }
+        maven {
+            url = uri("https://maven.pkg.github.com/dob-world/livestyler-sdk-android")
+            credentials {
+                username = System.getenv("GITHUB_USERNAME") ?: "{username}"
+                password = System.getenv("GITHUB_TOKEN") ?: "{PAT}"
+            }
+        }
         ...
     }
 }
 ```
 
+- `username`: Github 사용자 계정
+- `PAT`: Github Personal Access Token
+
 ```groovy
 // app/build.gradle
 dependencies {
-    // 저장소 준비 중입니다.
     implementation "ai.livestyler:LiveStylerSDKAndroid:latest.release"
 }
 ```

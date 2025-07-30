@@ -24,9 +24,10 @@ The SDK provides functionality to initialize the camera, send the captured video
 Add the following line to your `Podfile`:
 
 ```ruby
-# Preparing storage.
-pod 'LiveStylerSDK', :git => 'https://github.com/dob-world/LiveStylerSDKiOS.git', :tag => '0.0.1'
+pod 'LiveStylerSDK', :git => 'https://{ghp_token}@github.com/dob-world/livestyler-sdk-ios.git', :tag => '0.0.1'
 ```
+
+- `ghp_token`: This is a personal token used on GitHub. Use the personal token of an account that has access to the repository.
 
 And then run the following command:
 
