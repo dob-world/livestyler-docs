@@ -44,7 +44,7 @@ allprojects {
 ```groovy
 // app/build.gradle
 dependencies {
-    implementation "ai.livestyler:LiveStylerSDKAndroid:latest.release"
+    implementation "ai.livestyler:livestyler-sdk-android:latest.release"
 }
 ```
 
