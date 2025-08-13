@@ -1,0 +1,1400 @@
+
+<!doctype html>
+<html lang="ko" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="LiveStyler 서비스 연동을 위한 공식 개발자 문서입니다.">
+      
+      
+        <meta name="author" content="dob Studio Inc.">
+      
+      
+        <link rel="canonical" href="https://docs.livestyler.io/sdk/android/">
+      
+      
+        <link rel="prev" href="../overview/">
+      
+      
+        <link rel="next" href="../ios/">
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.16">
+    
+    
+      
+        <title>SDK - LiveStyler 개발자 문서</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.7e37652d.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    <body dir="ltr">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#livestyler-sdk-for-android" class="md-skip">
+          콘텐츠로 이동
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="상단/헤더">
+    <a href="../.." title="LiveStyler 개발자 문서" class="md-header__button md-logo" aria-label="LiveStyler 개발자 문서" data-md-component="logo">
+      
+  <img src="../../assets/images/favicon.png" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            LiveStyler 개발자 문서
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              SDK
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+      <div class="md-header__option">
+  <div class="md-select">
+    
+    <button class="md-header__button md-icon" aria-label="언어설정">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m12.87 15.07-2.54-2.51.03-.03A17.5 17.5 0 0 0 14.07 6H17V4h-7V2H8v2H1v2h11.17C11.5 7.92 10.44 9.75 9 11.35 8.07 10.32 7.3 9.19 6.69 8h-2c.73 1.63 1.73 3.17 2.98 4.56l-5.09 5.02L4 19l5-5 3.11 3.11zM18.5 10h-2L12 22h2l1.12-3h4.75L21 22h2zm-2.62 7 1.62-4.33L19.12 17z"/></svg>
+    </button>
+    <div class="md-select__inner">
+      <ul class="md-select__list">
+        
+          <li class="md-select__item">
+            <a href="./" hreflang="ko" class="md-select__link">
+              한국어
+            </a>
+          </li>
+        
+          <li class="md-select__item">
+            <a href="../../en/sdk/android/" hreflang="en" class="md-select__link">
+              English
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</div>
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="검색" placeholder="검색" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="검색">
+        
+        <button type="reset" class="md-search__icon md-icon" title="지우기" aria-label="지우기" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            검색 초기화
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="네비게이션" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="LiveStyler 개발자 문서" class="md-nav__button md-logo" aria-label="LiveStyler 개발자 문서" data-md-component="logo">
+      
+  <img src="../../assets/images/favicon.png" alt="logo">
+
+    </a>
+    LiveStyler 개발자 문서
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    홈
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    SDK
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            SDK
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../overview/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    개요
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_2" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_2_2" id="__nav_2_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    안드로이드
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_2_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_2_2">
+            <span class="md-nav__icon md-icon"></span>
+            안드로이드
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    SDK
+    
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    SDK
+    
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="목차">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      목차
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      시작하기
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="시작하기">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      요구사항
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      주요기능
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      설치
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="설치">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#gradle" class="md-nav__link">
+    <span class="md-ellipsis">
+      Gradle
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      사용방법
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="사용방법">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_6" class="md-nav__link">
+    <span class="md-ellipsis">
+      쉬운 사용
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_7" class="md-nav__link">
+    <span class="md-ellipsis">
+      직접 개발
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_8" class="md-nav__link">
+    <span class="md-ellipsis">
+      주요 기능 명세
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="주요 기능 명세">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#livestylermanager" class="md-nav__link">
+    <span class="md-ellipsis">
+      LiveStylerManager
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="LiveStylerManager">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#oncreate" class="md-nav__link">
+    <span class="md-ellipsis">
+      onCreate()
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#oncreateview" class="md-nav__link">
+    <span class="md-ellipsis">
+      onCreateView()
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#onviewcreated" class="md-nav__link">
+    <span class="md-ellipsis">
+      onViewCreated()
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#onpause" class="md-nav__link">
+    <span class="md-ellipsis">
+      onPause()
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#onresume" class="md-nav__link">
+    <span class="md-ellipsis">
+      onResume()
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#onstop" class="md-nav__link">
+    <span class="md-ellipsis">
+      onStop()
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ondestroy" class="md-nav__link">
+    <span class="md-ellipsis">
+      onDestroy()
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#changefilterstring" class="md-nav__link">
+    <span class="md-ellipsis">
+      changeFilter(String)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#switchcamerastring" class="md-nav__link">
+    <span class="md-ellipsis">
+      switchCamera(String)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#updatefiltercategory" class="md-nav__link">
+    <span class="md-ellipsis">
+      updateFilterCategory()
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#changemodelstring" class="md-nav__link">
+    <span class="md-ellipsis">
+      changeModel(String)
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_3" id="__nav_2_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    iOS
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_3">
+            <span class="md-nav__icon md-icon"></span>
+            iOS
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ios/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    SDK
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_4" id="__nav_2_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    플러터 웹
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_4">
+            <span class="md-nav__icon md-icon"></span>
+            플러터 웹
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../flutter-web/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    SDK
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    API
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            API
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../api/overview/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    개요
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../api/rest/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    REST
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../api/websocket/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    WebSocket
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="목차">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      목차
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      시작하기
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="시작하기">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      요구사항
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      주요기능
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      설치
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="설치">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#gradle" class="md-nav__link">
+    <span class="md-ellipsis">
+      Gradle
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      사용방법
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="사용방법">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_6" class="md-nav__link">
+    <span class="md-ellipsis">
+      쉬운 사용
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_7" class="md-nav__link">
+    <span class="md-ellipsis">
+      직접 개발
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_8" class="md-nav__link">
+    <span class="md-ellipsis">
+      주요 기능 명세
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="주요 기능 명세">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#livestylermanager" class="md-nav__link">
+    <span class="md-ellipsis">
+      LiveStylerManager
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="LiveStylerManager">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#oncreate" class="md-nav__link">
+    <span class="md-ellipsis">
+      onCreate()
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#oncreateview" class="md-nav__link">
+    <span class="md-ellipsis">
+      onCreateView()
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#onviewcreated" class="md-nav__link">
+    <span class="md-ellipsis">
+      onViewCreated()
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#onpause" class="md-nav__link">
+    <span class="md-ellipsis">
+      onPause()
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#onresume" class="md-nav__link">
+    <span class="md-ellipsis">
+      onResume()
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#onstop" class="md-nav__link">
+    <span class="md-ellipsis">
+      onStop()
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ondestroy" class="md-nav__link">
+    <span class="md-ellipsis">
+      onDestroy()
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#changefilterstring" class="md-nav__link">
+    <span class="md-ellipsis">
+      changeFilter(String)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#switchcamerastring" class="md-nav__link">
+    <span class="md-ellipsis">
+      switchCamera(String)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#updatefiltercategory" class="md-nav__link">
+    <span class="md-ellipsis">
+      updateFilterCategory()
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#changemodelstring" class="md-nav__link">
+    <span class="md-ellipsis">
+      changeModel(String)
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="livestyler-sdk-for-android">LiveStyler SDK for Android</h1>
+<p>Android용 애플리케이션에 LiveStyler 기능을 적용하기 위한 SDK입니다.
+SDK는 카메라를 초기화하여 촬영된 영상을 전송하고 영상처리가 완료된 영상을 수신하여 보여주는 기능을 제공합니다.</p>
+<h2 id="_1">시작하기</h2>
+<h3 id="_2">요구사항</h3>
+<ul>
+<li>Android 9.0 이상</li>
+<li>AGP 8.0 이상</li>
+<li>Kotlin 1.7.21 이상</li>
+</ul>
+<h3 id="_3">주요기능</h3>
+<ul>
+<li>시그널 채널을 통한 영상 변환을 제어</li>
+<li>카메라의 영상을 WebRTC 서버로 전송</li>
+<li>필터가 적용된 영상을 수신</li>
+</ul>
+<h3 id="_4">설치</h3>
+<h4 id="gradle">Gradle</h4>
+<div class="language-groovy highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="c1">// root/build.gradle</span>
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="n">allprojects</span><span class="w"> </span><span class="o">{</span>
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="w">    </span><span class="n">repositories</span><span class="w"> </span><span class="o">{</span>
+</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="w">        </span><span class="o">...</span>
+</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a><span class="w">        </span><span class="n">maven</span><span class="w"> </span><span class="o">{</span>
+</span><span id="__span-0-6"><a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a><span class="w">            </span><span class="n">url</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">uri</span><span class="o">(</span><span class="s2">&quot;https://maven.pkg.github.com/dob-world/livestyler-sdk-android&quot;</span><span class="o">)</span>
+</span><span id="__span-0-7"><a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a><span class="w">            </span><span class="n">credentials</span><span class="w"> </span><span class="o">{</span>
+</span><span id="__span-0-8"><a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a><span class="w">                </span><span class="n">username</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">System</span><span class="o">.</span><span class="na">getenv</span><span class="o">(</span><span class="s2">&quot;GITHUB_USERNAME&quot;</span><span class="o">)</span><span class="w"> </span><span class="o">?:</span><span class="w"> </span><span class="s2">&quot;{username}&quot;</span>
+</span><span id="__span-0-9"><a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a><span class="w">                </span><span class="n">password</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">System</span><span class="o">.</span><span class="na">getenv</span><span class="o">(</span><span class="s2">&quot;GITHUB_TOKEN&quot;</span><span class="o">)</span><span class="w"> </span><span class="o">?:</span><span class="w"> </span><span class="s2">&quot;{PAT}&quot;</span>
+</span><span id="__span-0-10"><a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a><span class="w">            </span><span class="o">}</span>
+</span><span id="__span-0-11"><a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a><span class="w">        </span><span class="o">}</span>
+</span><span id="__span-0-12"><a id="__codelineno-0-12" name="__codelineno-0-12" href="#__codelineno-0-12"></a><span class="w">        </span><span class="o">...</span>
+</span><span id="__span-0-13"><a id="__codelineno-0-13" name="__codelineno-0-13" href="#__codelineno-0-13"></a><span class="w">    </span><span class="o">}</span>
+</span><span id="__span-0-14"><a id="__codelineno-0-14" name="__codelineno-0-14" href="#__codelineno-0-14"></a><span class="o">}</span>
+</span></code></pre></div>
+<ul>
+<li><code>username</code>: Github 사용자 계정</li>
+<li><code>PAT</code>: Github Personal Access Token</li>
+</ul>
+<div class="language-groovy highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="c1">// app/build.gradle</span>
+</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="n">dependencies</span><span class="w"> </span><span class="o">{</span>
+</span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a><span class="w">    </span><span class="n">implementation</span><span class="w"> </span><span class="s2">&quot;ai.livestyler:livestyler-sdk-android:latest.release&quot;</span>
+</span><span id="__span-1-4"><a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a><span class="o">}</span>
+</span></code></pre></div>
+<p>그리고 다음 명령을 실행합니다:</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>$<span class="w"> </span>./gradlew<span class="w"> </span>build<span class="w"> </span>--refresh-dependencies
+</span></code></pre></div>
+<h2 id="_5">사용방법</h2>
+<h3 id="_6">쉬운 사용</h3>
+<p>기능이 사전에 구현된 <code>StreamFragment</code> 사용할 수 있습니다.</p>
+<div class="language-kotlin highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="c1">// 초기화</span>
+</span><span id="__span-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a><span class="kd">val</span><span class="w"> </span><span class="nv">args</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Bundle</span><span class="p">().</span><span class="na">apply</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-3-3"><a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a><span class="w">    </span><span class="n">putString</span><span class="p">(</span><span class="s">&quot;credential&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;{credential}&quot;</span><span class="p">)</span><span class="w">                             </span><span class="c1">// 관리자 페이지를 통해 발급 받은 인증 토큰</span>
+</span><span id="__span-3-4"><a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a><span class="w">    </span><span class="n">putString</span><span class="p">(</span><span class="s">&quot;apiEndpoint&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;{apiEndpoint}&quot;</span><span class="p">)</span><span class="w">                           </span><span class="c1">// 서비스의 정보를 얻을 수 있는 API 서버</span>
+</span><span id="__span-3-5"><a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a><span class="w">    </span><span class="n">putString</span><span class="p">(</span><span class="s">&quot;signalEndpoint&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;{signalEndpoint}&quot;</span><span class="p">)</span><span class="w">                     </span><span class="c1">// 백엔드와 인증 정보를 주고 받는 시그널 채널 엔드포인트 주소</span>
+</span><span id="__span-3-6"><a id="__codelineno-3-6" name="__codelineno-3-6" href="#__codelineno-3-6"></a><span class="w">    </span><span class="n">putParcelableArrayList</span><span class="p">(</span>
+</span><span id="__span-3-7"><a id="__codelineno-3-7" name="__codelineno-3-7" href="#__codelineno-3-7"></a><span class="w">        </span><span class="s">&quot;serverEndpoints&quot;</span><span class="p">,</span><span class="w">                                              </span><span class="c1">// STUN 서버와 TURN 서버를 설정, STUN 서버는 제공된 구글 STUN 사용 권장</span>
+</span><span id="__span-3-8"><a id="__codelineno-3-8" name="__codelineno-3-8" href="#__codelineno-3-8"></a><span class="w">        </span><span class="n">arrayListOf</span><span class="p">(</span>
+</span><span id="__span-3-9"><a id="__codelineno-3-9" name="__codelineno-3-9" href="#__codelineno-3-9"></a><span class="w">            </span><span class="n">Bundle</span><span class="p">().</span><span class="na">apply</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-3-10"><a id="__codelineno-3-10" name="__codelineno-3-10" href="#__codelineno-3-10"></a><span class="w">                </span><span class="n">putString</span><span class="p">(</span><span class="s">&quot;type&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;stun&quot;</span><span class="p">)</span>
+</span><span id="__span-3-11"><a id="__codelineno-3-11" name="__codelineno-3-11" href="#__codelineno-3-11"></a><span class="w">                </span><span class="n">putString</span><span class="p">(</span><span class="s">&quot;endpoint&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;stun:stun.l.google.com:19302&quot;</span><span class="p">)</span><span class="w">   </span><span class="c1">// STUN 서버 주소</span>
+</span><span id="__span-3-12"><a id="__codelineno-3-12" name="__codelineno-3-12" href="#__codelineno-3-12"></a><span class="w">            </span><span class="p">},</span>
+</span><span id="__span-3-13"><a id="__codelineno-3-13" name="__codelineno-3-13" href="#__codelineno-3-13"></a><span class="w">            </span><span class="n">Bundle</span><span class="p">().</span><span class="na">apply</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-3-14"><a id="__codelineno-3-14" name="__codelineno-3-14" href="#__codelineno-3-14"></a><span class="w">                </span><span class="n">putString</span><span class="p">(</span><span class="s">&quot;type&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;turn&quot;</span><span class="p">)</span>
+</span><span id="__span-3-15"><a id="__codelineno-3-15" name="__codelineno-3-15" href="#__codelineno-3-15"></a><span class="w">                </span><span class="n">putString</span><span class="p">(</span><span class="s">&quot;endpoint&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;{turnEndpoint}&quot;</span><span class="p">)</span><span class="w">                 </span><span class="c1">// TURN 서버 주소</span>
+</span><span id="__span-3-16"><a id="__codelineno-3-16" name="__codelineno-3-16" href="#__codelineno-3-16"></a><span class="w">                </span><span class="n">putString</span><span class="p">(</span><span class="s">&quot;username&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;{username}&quot;</span><span class="p">)</span><span class="w">                     </span><span class="c1">// TURN 서버 인증 정보</span>
+</span><span id="__span-3-17"><a id="__codelineno-3-17" name="__codelineno-3-17" href="#__codelineno-3-17"></a><span class="w">                </span><span class="n">putString</span><span class="p">(</span><span class="s">&quot;password&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;{password}&quot;</span><span class="p">)</span><span class="w">                     </span><span class="c1">// TURN 서버 인증 정보</span>
+</span><span id="__span-3-18"><a id="__codelineno-3-18" name="__codelineno-3-18" href="#__codelineno-3-18"></a><span class="w">            </span><span class="p">},</span>
+</span><span id="__span-3-19"><a id="__codelineno-3-19" name="__codelineno-3-19" href="#__codelineno-3-19"></a><span class="w">            </span><span class="n">Bundle</span><span class="p">().</span><span class="na">apply</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-3-20"><a id="__codelineno-3-20" name="__codelineno-3-20" href="#__codelineno-3-20"></a><span class="w">                </span><span class="n">putString</span><span class="p">(</span><span class="s">&quot;type&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;turn&quot;</span><span class="p">)</span>
+</span><span id="__span-3-21"><a id="__codelineno-3-21" name="__codelineno-3-21" href="#__codelineno-3-21"></a><span class="w">                </span><span class="n">putString</span><span class="p">(</span><span class="s">&quot;endpoint&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;{turnEndpoint}&quot;</span><span class="p">)</span><span class="w">                 </span><span class="c1">// TURN 서버 주소</span>
+</span><span id="__span-3-22"><a id="__codelineno-3-22" name="__codelineno-3-22" href="#__codelineno-3-22"></a><span class="w">                </span><span class="n">putString</span><span class="p">(</span><span class="s">&quot;username&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;{username}&quot;</span><span class="p">)</span><span class="w">                     </span><span class="c1">// TURN 서버 인증 정보</span>
+</span><span id="__span-3-23"><a id="__codelineno-3-23" name="__codelineno-3-23" href="#__codelineno-3-23"></a><span class="w">                </span><span class="n">putString</span><span class="p">(</span><span class="s">&quot;secret&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;{secret}&quot;</span><span class="p">)</span><span class="w">                         </span><span class="c1">// TURN 서버 인증 정보</span>
+</span><span id="__span-3-24"><a id="__codelineno-3-24" name="__codelineno-3-24" href="#__codelineno-3-24"></a><span class="w">            </span><span class="p">}</span>
+</span><span id="__span-3-25"><a id="__codelineno-3-25" name="__codelineno-3-25" href="#__codelineno-3-25"></a><span class="w">        </span><span class="p">)</span>
+</span><span id="__span-3-26"><a id="__codelineno-3-26" name="__codelineno-3-26" href="#__codelineno-3-26"></a><span class="w">    </span><span class="p">)</span>
+</span><span id="__span-3-27"><a id="__codelineno-3-27" name="__codelineno-3-27" href="#__codelineno-3-27"></a><span class="w">    </span><span class="n">putString</span><span class="p">(</span><span class="s">&quot;iceTransportsType&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;{iceTransportsType}&quot;</span><span class="p">)</span><span class="w">           </span><span class="c1">// All, NoHost, Relay 중 하나의 값을 사용하여 Peep-to-peer 연결 방식을 지정</span>
+</span><span id="__span-3-28"><a id="__codelineno-3-28" name="__codelineno-3-28" href="#__codelineno-3-28"></a><span class="p">}</span>
+</span><span id="__span-3-29"><a id="__codelineno-3-29" name="__codelineno-3-29" href="#__codelineno-3-29"></a>
+</span><span id="__span-3-30"><a id="__codelineno-3-30" name="__codelineno-3-30" href="#__codelineno-3-30"></a><span class="n">findNavController</span><span class="p">().</span><span class="na">navigate</span><span class="p">(</span><span class="n">R</span><span class="p">.</span><span class="na">id</span><span class="p">.</span><span class="na">action_HostFragment_to_StreamFragment</span><span class="p">,</span><span class="w"> </span><span class="n">args</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">args</span><span class="p">)</span>
+</span></code></pre></div>
+<h3 id="_7">직접 개발</h3>
+<p>쉬운 사용에서는 제공하지 않는 추가적인 기능, UI/UX의 임의 구현을 위해서는 직접 구현하는 것이 좋습니다.</p>
+<p>사용 방법은 후술할 <a href="#주요-기능-명세">주요 기능 명세</a>를 참고하여 주시기 바랍니다.</p>
+<p>화면의 디자인과 기능을 변경하고자 하면 <a href="../android-streamfragmentkt/"><code>StreamFragment.kt</code> 파일</a>과 <a href="../android-fragmentstreamxml/"><code>fragment_stream.xml</code> 파일</a>을 참고하여 사용하세요.</p>
+<p>세부적인 API 명세는 <a href="../reference-kotlin/">Android APIs</a>를 참고하여 주시기 바랍니다.</p>
+<h2 id="_8">주요 기능 명세</h2>
+<p>API를 사용하면 화면의 기능을 직접 만들어 구현할 수 있습니다.</p>
+<h3 id="livestylermanager">LiveStylerManager</h3>
+<div class="language-kotlin highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="c1">// 초기화</span>
+</span><span id="__span-4-2"><a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a><span class="c1">// accessKey, signalEndpoint, serverEndpoints는 args를 만들때 사용한 값과 같은 값을 사용</span>
+</span><span id="__span-4-3"><a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a><span class="kd">val</span><span class="w"> </span><span class="nv">liveStylerManager</span><span class="p">:</span><span class="w"> </span><span class="n">LiveStylerManager</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">LiveStylerManager</span><span class="p">(</span>
+</span><span id="__span-4-4"><a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a><span class="w">    </span><span class="s">&quot;{credential}&quot;</span><span class="p">,</span>
+</span><span id="__span-4-5"><a id="__codelineno-4-5" name="__codelineno-4-5" href="#__codelineno-4-5"></a><span class="w">    </span><span class="s">&quot;{apiEndpoint}&quot;</span><span class="p">,</span>
+</span><span id="__span-4-6"><a id="__codelineno-4-6" name="__codelineno-4-6" href="#__codelineno-4-6"></a><span class="w">    </span><span class="s">&quot;{signalEndpoint}&quot;</span><span class="p">,</span>
+</span><span id="__span-4-7"><a id="__codelineno-4-7" name="__codelineno-4-7" href="#__codelineno-4-7"></a><span class="w">    </span><span class="n">listOf</span><span class="p">(</span><span class="w"> </span><span class="p">{</span><span class="n">serverEndpoints</span><span class="p">}</span><span class="w"> </span><span class="p">),</span>
+</span><span id="__span-4-8"><a id="__codelineno-4-8" name="__codelineno-4-8" href="#__codelineno-4-8"></a><span class="w">    </span><span class="s">&quot;{iceTransportsType}&quot;</span>
+</span><span id="__span-4-9"><a id="__codelineno-4-9" name="__codelineno-4-9" href="#__codelineno-4-9"></a><span class="p">)</span>
+</span></code></pre></div>
+<h4 id="oncreate">onCreate()</h4>
+<p>초기화가 될 때 필요한 작업이 이루어집니다.</p>
+<div class="language-kotlin highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="kd">override</span><span class="w"> </span><span class="kd">fun</span><span class="w"> </span><span class="nf">onCreate</span><span class="p">(</span><span class="n">saveInstance?:</span><span class="w"> </span><span class="n">Bundle</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-5-2"><a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a><span class="w">    </span><span class="k">super</span><span class="p">.</span><span class="na">onCreate</span><span class="p">(</span><span class="n">saveInstance</span><span class="p">)</span>
+</span><span id="__span-5-3"><a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a><span class="w">    </span><span class="n">liveStyleManager</span><span class="p">.</span><span class="na">onCreate</span><span class="p">(</span><span class="n">requrieContext</span><span class="p">(),</span><span class="w"> </span><span class="k">this</span><span class="p">)</span>
+</span><span id="__span-5-4"><a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a><span class="p">}</span>
+</span></code></pre></div>
+<h4 id="oncreateview">onCreateView()</h4>
+<p>뷰가 생성되기 전에 필요한 작업이 이루어집니다.</p>
+<div class="language-kotlin highlight"><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="kd">override</span><span class="w"> </span><span class="kd">fun</span><span class="w"> </span><span class="nf">onCreateView</span><span class="p">(</span>
+</span><span id="__span-6-2"><a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a><span class="w">    </span><span class="n">inflater</span><span class="p">:</span><span class="w"> </span><span class="n">LayoutInflater</span><span class="p">,</span><span class="w"> </span><span class="n">container</span><span class="p">:</span><span class="w"> </span><span class="n">ViewGroup?,</span>
+</span><span id="__span-6-3"><a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a><span class="w">    </span><span class="n">savedInstanceState</span><span class="p">:</span><span class="w"> </span><span class="n">Bundle?</span>
+</span><span id="__span-6-4"><a id="__codelineno-6-4" name="__codelineno-6-4" href="#__codelineno-6-4"></a><span class="p">):</span><span class="w"> </span><span class="n">View</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-6-5"><a id="__codelineno-6-5" name="__codelineno-6-5" href="#__codelineno-6-5"></a><span class="w">    </span><span class="n">_binding</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">FragmentStreamBinding</span><span class="p">.</span><span class="na">inflate</span><span class="p">(</span><span class="n">inflater</span><span class="p">,</span><span class="w"> </span><span class="n">container</span><span class="p">,</span><span class="w"> </span><span class="kc">false</span><span class="p">)</span>
+</span><span id="__span-6-6"><a id="__codelineno-6-6" name="__codelineno-6-6" href="#__codelineno-6-6"></a><span class="w">    </span><span class="n">liveStylerManager</span><span class="p">.</span><span class="na">onCreateView</span><span class="p">(</span><span class="k">this</span><span class="p">,</span><span class="w"> </span><span class="k">this</span><span class="p">)</span>
+</span><span id="__span-6-7"><a id="__codelineno-6-7" name="__codelineno-6-7" href="#__codelineno-6-7"></a><span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">binding</span><span class="p">.</span><span class="na">root</span>
+</span><span id="__span-6-8"><a id="__codelineno-6-8" name="__codelineno-6-8" href="#__codelineno-6-8"></a><span class="p">}</span>
+</span></code></pre></div>
+<h4 id="onviewcreated">onViewCreated()</h4>
+<p>만들어진 뷰를 매니저로 전달합니다.
+카메라 프리뷰 또는 렌더 프리뷰를 선택적으로 넣을 수 있습니다.</p>
+<div class="language-kotlin highlight"><pre><span></span><code><span id="__span-7-1"><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span class="kd">override</span><span class="w"> </span><span class="kd">fun</span><span class="w"> </span><span class="nf">onViewCreated</span><span class="p">(</span><span class="n">view</span><span class="p">:</span><span class="w"> </span><span class="n">View</span><span class="p">,</span><span class="w"> </span><span class="n">savedInstanceState</span><span class="p">:</span><span class="w"> </span><span class="n">Bundle?)</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-7-2"><a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a><span class="w">    </span><span class="k">super</span><span class="p">.</span><span class="na">onViewCreated</span><span class="p">(</span><span class="n">view</span><span class="p">,</span><span class="w"> </span><span class="n">savedInstanceState</span><span class="p">)</span>
+</span><span id="__span-7-3"><a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a><span class="w">    </span><span class="n">liveStylerManager</span><span class="p">.</span><span class="na">onViewCreated</span><span class="p">(</span><span class="n">binding</span><span class="p">.</span><span class="na">preview</span><span class="p">,</span><span class="w"> </span><span class="n">binding</span><span class="p">.</span><span class="na">renderView</span><span class="p">)</span>
+</span><span id="__span-7-4"><a id="__codelineno-7-4" name="__codelineno-7-4" href="#__codelineno-7-4"></a><span class="p">}</span>
+</span></code></pre></div>
+<h4 id="onpause">onPause()</h4>
+<p>카메라 캡처를 중단합니다.</p>
+<div class="language-kotlin highlight"><pre><span></span><code><span id="__span-8-1"><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a><span class="kd">override</span><span class="w"> </span><span class="kd">fun</span><span class="w"> </span><span class="nf">onPause</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-8-2"><a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a><span class="w">    </span><span class="k">super</span><span class="p">.</span><span class="na">onPause</span><span class="p">()</span>
+</span><span id="__span-8-3"><a id="__codelineno-8-3" name="__codelineno-8-3" href="#__codelineno-8-3"></a><span class="w">    </span><span class="n">liveStylerManager</span><span class="p">.</span><span class="na">onPause</span><span class="p">()</span>
+</span><span id="__span-8-4"><a id="__codelineno-8-4" name="__codelineno-8-4" href="#__codelineno-8-4"></a><span class="p">}</span>
+</span></code></pre></div>
+<h4 id="onresume">onResume()</h4>
+<p>카메라 캡처를 다시 시작합니다.
+시그널 서버 연결 및 WebRTC 연결을 다시 설정합니다.</p>
+<div class="language-kotlin highlight"><pre><span></span><code><span id="__span-9-1"><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a><span class="kd">override</span><span class="w"> </span><span class="kd">fun</span><span class="w"> </span><span class="nf">onResume</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-9-2"><a id="__codelineno-9-2" name="__codelineno-9-2" href="#__codelineno-9-2"></a><span class="w">    </span><span class="k">super</span><span class="p">.</span><span class="na">onResume</span><span class="p">()</span>
+</span><span id="__span-9-3"><a id="__codelineno-9-3" name="__codelineno-9-3" href="#__codelineno-9-3"></a><span class="w">    </span><span class="n">liveStylerManager</span><span class="p">.</span><span class="na">onResume</span><span class="p">()</span>
+</span><span id="__span-9-4"><a id="__codelineno-9-4" name="__codelineno-9-4" href="#__codelineno-9-4"></a><span class="p">}</span>
+</span></code></pre></div>
+<h4 id="onstop">onStop()</h4>
+<p>카메라 리소스를 릴리즈 반환합니다.
+시그널 서버와 WebRTC 연결을 끊고 대기합니다.</p>
+<div class="language-kotlin highlight"><pre><span></span><code><span id="__span-10-1"><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a><span class="kd">override</span><span class="w"> </span><span class="kd">fun</span><span class="w"> </span><span class="nf">onStop</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-10-2"><a id="__codelineno-10-2" name="__codelineno-10-2" href="#__codelineno-10-2"></a><span class="w">    </span><span class="n">liveStylerManager</span><span class="p">.</span><span class="na">onStop</span><span class="p">()</span>
+</span><span id="__span-10-3"><a id="__codelineno-10-3" name="__codelineno-10-3" href="#__codelineno-10-3"></a><span class="w">    </span><span class="k">super</span><span class="p">.</span><span class="na">onStop</span><span class="p">()</span>
+</span><span id="__span-10-4"><a id="__codelineno-10-4" name="__codelineno-10-4" href="#__codelineno-10-4"></a><span class="p">}</span>
+</span></code></pre></div>
+<h4 id="ondestroy">onDestroy()</h4>
+<p>시그널 서버 연결과 WebRTC 연결을 완전히 종료합니다.</p>
+<div class="language-kotlin highlight"><pre><span></span><code><span id="__span-11-1"><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a><span class="kd">override</span><span class="w"> </span><span class="kd">fun</span><span class="w"> </span><span class="nf">onDestroyView</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-11-2"><a id="__codelineno-11-2" name="__codelineno-11-2" href="#__codelineno-11-2"></a><span class="w">    </span><span class="n">liveStylerManager</span><span class="p">.</span><span class="na">onDestroy</span><span class="p">()</span>
+</span><span id="__span-11-3"><a id="__codelineno-11-3" name="__codelineno-11-3" href="#__codelineno-11-3"></a><span class="w">    </span><span class="n">_binding</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">null</span>
+</span><span id="__span-11-4"><a id="__codelineno-11-4" name="__codelineno-11-4" href="#__codelineno-11-4"></a><span class="w">    </span><span class="k">super</span><span class="p">.</span><span class="na">onDestroyView</span><span class="p">()</span>
+</span><span id="__span-11-5"><a id="__codelineno-11-5" name="__codelineno-11-5" href="#__codelineno-11-5"></a><span class="p">}</span>
+</span></code></pre></div>
+<h4 id="changefilterstring">changeFilter(String)</h4>
+<p>WebRTC 서버에 설정된 필터를 변경합니다.</p>
+<div class="language-kotlin highlight"><pre><span></span><code><span id="__span-12-1"><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a><span class="n">liveStylerManager</span><span class="p">.</span><span class="na">changeFilter</span><span class="p">(</span><span class="s">&quot;{filter_id}&quot;</span><span class="p">)</span>
+</span></code></pre></div>
+<ul>
+<li>filter_id: API를 통해 전달 받은 필터 리스트 중에 변경을 원하는 필터의 ID</li>
+</ul>
+<h4 id="switchcamerastring">switchCamera(String)</h4>
+<p>전달 받은 카메라 ID로 전환합니다.
+카메라 ID는 CameraManager를 통해 얻을 수 있습니다.</p>
+<div class="language-kotlin highlight"><pre><span></span><code><span id="__span-13-1"><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a><span class="n">liveStylerManager</span><span class="p">.</span><span class="na">switchCamera</span><span class="p">(</span><span class="s">&quot;{camera_id}&quot;</span><span class="p">)</span>
+</span></code></pre></div>
+<ul>
+<li>camera_id: CamaraManager(안드로이드 시스템 도구)를 통해 얻은 카메라의 ID</li>
+</ul>
+<h4 id="updatefiltercategory">updateFilterCategory()</h4>
+<p>API 서버에서 필터, 카테고리 리스트를 새로 받아 업데이트합니다.
+필터 리스트는 시그널 서버에 접속하면 자동으로 업데이트됩니다.
+갱신된 리스트는 SignalStateListener를 통해 전달됩니다.</p>
+<div class="language-kotlin highlight"><pre><span></span><code><span id="__span-14-1"><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a><span class="n">liveStylerManager</span><span class="p">.</span><span class="na">updateFilterCategory</span><span class="p">()</span>
+</span></code></pre></div>
+<h4 id="changemodelstring">changeModel(String)</h4>
+<p>전달 받은 모델 이름으로 필터 모델을 변경합니다.
+모델 이름은 onReceivedFilterList() 콜백을 통해 얻은 필터의 정보(FilterCategoryData)에서 모델 이름을 찾아서 사용합니다.</p>
+<div class="language-kotlin highlight"><pre><span></span><code><span id="__span-15-1"><a id="__codelineno-15-1" name="__codelineno-15-1" href="#__codelineno-15-1"></a><span class="n">liveStylerManager</span><span class="p">.</span><span class="na">changeModel</span><span class="p">(</span><span class="s">&quot;{model_name}&quot;</span><span class="p">)</span>
+</span></code></pre></div>
+<ul>
+<li>model_name: FilterCategoryData의 모델 이름</li>
+</ul>
+<blockquote>
+<p>Android SDK에는 API를 통해 모델 리스트를 가져오는 처리가 포함되어 있습니다.<br/>
+하지만, SDK에 반영된 API는 LiveStyler 제공 서비스이므로 실제 서비스와 차이가 있을 수 있습니다.<br/>
+API는 서비스의 구성에 따라 달라질 수 있으므로 API 가이드를 참고하여 모델 리스트를 확인하여 사용하시기 바랍니다.</p>
+</blockquote>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      <script id="__config" type="application/json">{"base": "../..", "features": [], "search": "../../assets/javascripts/workers/search.d50fe291.min.js", "tags": null, "translations": {"clipboard.copied": "\ud074\ub9bd\ubcf4\ub4dc\uc5d0 \ubcf5\uc0ac\ub428", "clipboard.copy": "\ud074\ub9bd\ubcf4\ub4dc\ub85c \ubcf5\uc0ac", "search.result.more.one": "\uc774 \ubb38\uc11c\uc5d0\uc11c 1\uac1c\uc758 \uac80\uc0c9 \uacb0\uacfc \ub354 \ubcf4\uae30", "search.result.more.other": "\uc774 \ubb38\uc11c\uc5d0\uc11c #\uac1c\uc758 \uac80\uc0c9 \uacb0\uacfc \ub354 \ubcf4\uae30", "search.result.none": "\uac80\uc0c9\uc5b4\uc640 \uc77c\uce58\ud558\ub294 \ubb38\uc11c\uac00 \uc5c6\uc2b5\ub2c8\ub2e4", "search.result.one": "1\uac1c\uc758 \uc77c\uce58\ud558\ub294 \ubb38\uc11c", "search.result.other": "#\uac1c\uc758 \uc77c\uce58\ud558\ub294 \ubb38\uc11c", "search.result.placeholder": "\uac80\uc0c9\uc5b4\ub97c \uc785\ub825\ud558\uc138\uc694", "search.result.term.missing": "\ud3ec\ud568\ub418\uc9c0 \uc54a\uc740 \uac80\uc0c9\uc5b4", "select.version": "\ubc84\uc804 \uc120\ud0dd"}, "version": null}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.50899def.min.js"></script>
+      
+    
+  </body>
+</html>

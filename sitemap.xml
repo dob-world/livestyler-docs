@@ -1,0 +1,241 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">
+    <url>
+        <loc>https://docs.livestyler.io/</loc>
+        <lastmod>2025-08-13</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="ko" href="https://docs.livestyler.io/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://docs.livestyler.io/en/"/>
+    </url>
+    <url>
+        <loc>https://docs.livestyler.io/api/overview/</loc>
+        <lastmod>2025-08-13</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="ko" href="https://docs.livestyler.io/api/overview/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://docs.livestyler.io/en/api/overview/"/>
+    </url>
+    <url>
+        <loc>https://docs.livestyler.io/api/rest/</loc>
+        <lastmod>2025-08-13</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="ko" href="https://docs.livestyler.io/api/rest/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://docs.livestyler.io/en/api/rest/"/>
+    </url>
+    <url>
+        <loc>https://docs.livestyler.io/api/websocket/</loc>
+        <lastmod>2025-08-13</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="ko" href="https://docs.livestyler.io/api/websocket/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://docs.livestyler.io/en/api/websocket/"/>
+    </url>
+    <url>
+        <loc>https://docs.livestyler.io/sdk/android-fragmentstreamxml/</loc>
+        <lastmod>2025-08-13</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="ko" href="https://docs.livestyler.io/sdk/android-fragmentstreamxml/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://docs.livestyler.io/en/sdk/android-fragmentstreamxml/"/>
+    </url>
+    <url>
+        <loc>https://docs.livestyler.io/sdk/android-streamfragmentkt/</loc>
+        <lastmod>2025-08-13</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="ko" href="https://docs.livestyler.io/sdk/android-streamfragmentkt/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://docs.livestyler.io/en/sdk/android-streamfragmentkt/"/>
+    </url>
+    <url>
+        <loc>https://docs.livestyler.io/sdk/android/</loc>
+        <lastmod>2025-08-13</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="ko" href="https://docs.livestyler.io/sdk/android/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://docs.livestyler.io/en/sdk/android/"/>
+    </url>
+    <url>
+        <loc>https://docs.livestyler.io/sdk/flutter-streampagedart-web/</loc>
+        <lastmod>2025-08-13</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="ko" href="https://docs.livestyler.io/sdk/flutter-streampagedart-web/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://docs.livestyler.io/en/sdk/flutter-streampagedart-web/"/>
+    </url>
+    <url>
+        <loc>https://docs.livestyler.io/sdk/flutter-web/</loc>
+        <lastmod>2025-08-13</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="ko" href="https://docs.livestyler.io/sdk/flutter-web/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://docs.livestyler.io/en/sdk/flutter-web/"/>
+    </url>
+    <url>
+        <loc>https://docs.livestyler.io/sdk/flutter/</loc>
+        <lastmod>2025-08-13</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="ko" href="https://docs.livestyler.io/sdk/flutter/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://docs.livestyler.io/en/sdk/flutter/"/>
+    </url>
+    <url>
+        <loc>https://docs.livestyler.io/sdk/ios-streamviewcontroller/</loc>
+        <lastmod>2025-08-13</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="ko" href="https://docs.livestyler.io/sdk/ios-streamviewcontroller/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://docs.livestyler.io/en/sdk/ios-streamviewcontroller/"/>
+    </url>
+    <url>
+        <loc>https://docs.livestyler.io/sdk/ios/</loc>
+        <lastmod>2025-08-13</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="ko" href="https://docs.livestyler.io/sdk/ios/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://docs.livestyler.io/en/sdk/ios/"/>
+    </url>
+    <url>
+        <loc>https://docs.livestyler.io/sdk/overview/</loc>
+        <lastmod>2025-08-13</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="ko" href="https://docs.livestyler.io/sdk/overview/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://docs.livestyler.io/en/sdk/overview/"/>
+    </url>
+    <url>
+        <loc>https://docs.livestyler.io/sdk/reference-flutter-web/</loc>
+        <lastmod>2025-08-13</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="ko" href="https://docs.livestyler.io/sdk/reference-flutter-web/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://docs.livestyler.io/en/sdk/reference-flutter-web/"/>
+    </url>
+    <url>
+        <loc>https://docs.livestyler.io/sdk/reference-flutter/</loc>
+        <lastmod>2025-08-13</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="ko" href="https://docs.livestyler.io/sdk/reference-flutter/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://docs.livestyler.io/en/sdk/reference-flutter/"/>
+    </url>
+    <url>
+        <loc>https://docs.livestyler.io/sdk/reference-kotlin/</loc>
+        <lastmod>2025-08-13</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="ko" href="https://docs.livestyler.io/sdk/reference-kotlin/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://docs.livestyler.io/en/sdk/reference-kotlin/"/>
+    </url>
+    <url>
+        <loc>https://docs.livestyler.io/sdk/reference-swift/</loc>
+        <lastmod>2025-08-13</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="ko" href="https://docs.livestyler.io/sdk/reference-swift/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://docs.livestyler.io/en/sdk/reference-swift/"/>
+    </url>
+    <url>
+        <loc>https://docs.livestyler.io/en/</loc>
+        <lastmod>2025-08-13</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="en" href="https://docs.livestyler.io/en/"/>
+        <xhtml:link rel="alternate" hreflang="ko" href="https://docs.livestyler.io/"/>
+    </url>
+    <url>
+        <loc>https://docs.livestyler.io/en/api/overview/</loc>
+        <lastmod>2025-08-13</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="en" href="https://docs.livestyler.io/en/api/overview/"/>
+        <xhtml:link rel="alternate" hreflang="ko" href="https://docs.livestyler.io/api/overview/"/>
+    </url>
+    <url>
+        <loc>https://docs.livestyler.io/en/api/rest/</loc>
+        <lastmod>2025-08-13</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="en" href="https://docs.livestyler.io/en/api/rest/"/>
+        <xhtml:link rel="alternate" hreflang="ko" href="https://docs.livestyler.io/api/rest/"/>
+    </url>
+    <url>
+        <loc>https://docs.livestyler.io/en/api/websocket/</loc>
+        <lastmod>2025-08-13</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="en" href="https://docs.livestyler.io/en/api/websocket/"/>
+        <xhtml:link rel="alternate" hreflang="ko" href="https://docs.livestyler.io/api/websocket/"/>
+    </url>
+    <url>
+        <loc>https://docs.livestyler.io/en/sdk/android-fragmentstreamxml/</loc>
+        <lastmod>2025-08-13</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="en" href="https://docs.livestyler.io/en/sdk/android-fragmentstreamxml/"/>
+        <xhtml:link rel="alternate" hreflang="ko" href="https://docs.livestyler.io/sdk/android-fragmentstreamxml/"/>
+    </url>
+    <url>
+        <loc>https://docs.livestyler.io/en/sdk/android-streamfragmentkt/</loc>
+        <lastmod>2025-08-13</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="en" href="https://docs.livestyler.io/en/sdk/android-streamfragmentkt/"/>
+        <xhtml:link rel="alternate" hreflang="ko" href="https://docs.livestyler.io/sdk/android-streamfragmentkt/"/>
+    </url>
+    <url>
+        <loc>https://docs.livestyler.io/en/sdk/android/</loc>
+        <lastmod>2025-08-13</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="en" href="https://docs.livestyler.io/en/sdk/android/"/>
+        <xhtml:link rel="alternate" hreflang="ko" href="https://docs.livestyler.io/sdk/android/"/>
+    </url>
+    <url>
+        <loc>https://docs.livestyler.io/en/sdk/flutter-streampagedart-web/</loc>
+        <lastmod>2025-08-13</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="en" href="https://docs.livestyler.io/en/sdk/flutter-streampagedart-web/"/>
+        <xhtml:link rel="alternate" hreflang="ko" href="https://docs.livestyler.io/sdk/flutter-streampagedart-web/"/>
+    </url>
+    <url>
+        <loc>https://docs.livestyler.io/en/sdk/flutter-web/</loc>
+        <lastmod>2025-08-13</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="en" href="https://docs.livestyler.io/en/sdk/flutter-web/"/>
+        <xhtml:link rel="alternate" hreflang="ko" href="https://docs.livestyler.io/sdk/flutter-web/"/>
+    </url>
+    <url>
+        <loc>https://docs.livestyler.io/en/sdk/flutter/</loc>
+        <lastmod>2025-08-13</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="en" href="https://docs.livestyler.io/en/sdk/flutter/"/>
+        <xhtml:link rel="alternate" hreflang="ko" href="https://docs.livestyler.io/sdk/flutter/"/>
+    </url>
+    <url>
+        <loc>https://docs.livestyler.io/en/sdk/ios-streamviewcontroller/</loc>
+        <lastmod>2025-08-13</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="en" href="https://docs.livestyler.io/en/sdk/ios-streamviewcontroller/"/>
+        <xhtml:link rel="alternate" hreflang="ko" href="https://docs.livestyler.io/sdk/ios-streamviewcontroller/"/>
+    </url>
+    <url>
+        <loc>https://docs.livestyler.io/en/sdk/ios/</loc>
+        <lastmod>2025-08-13</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="en" href="https://docs.livestyler.io/en/sdk/ios/"/>
+        <xhtml:link rel="alternate" hreflang="ko" href="https://docs.livestyler.io/sdk/ios/"/>
+    </url>
+    <url>
+        <loc>https://docs.livestyler.io/en/sdk/overview/</loc>
+        <lastmod>2025-08-13</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="en" href="https://docs.livestyler.io/en/sdk/overview/"/>
+        <xhtml:link rel="alternate" hreflang="ko" href="https://docs.livestyler.io/sdk/overview/"/>
+    </url>
+    <url>
+        <loc>https://docs.livestyler.io/en/sdk/reference-flutter-web/</loc>
+        <lastmod>2025-08-13</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="en" href="https://docs.livestyler.io/en/sdk/reference-flutter-web/"/>
+        <xhtml:link rel="alternate" hreflang="ko" href="https://docs.livestyler.io/sdk/reference-flutter-web/"/>
+    </url>
+    <url>
+        <loc>https://docs.livestyler.io/en/sdk/reference-flutter/</loc>
+        <lastmod>2025-08-13</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="en" href="https://docs.livestyler.io/en/sdk/reference-flutter/"/>
+        <xhtml:link rel="alternate" hreflang="ko" href="https://docs.livestyler.io/sdk/reference-flutter/"/>
+    </url>
+    <url>
+        <loc>https://docs.livestyler.io/en/sdk/reference-kotlin/</loc>
+        <lastmod>2025-08-13</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="en" href="https://docs.livestyler.io/en/sdk/reference-kotlin/"/>
+        <xhtml:link rel="alternate" hreflang="ko" href="https://docs.livestyler.io/sdk/reference-kotlin/"/>
+    </url>
+    <url>
+        <loc>https://docs.livestyler.io/en/sdk/reference-swift/</loc>
+        <lastmod>2025-08-13</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="en" href="https://docs.livestyler.io/en/sdk/reference-swift/"/>
+        <xhtml:link rel="alternate" hreflang="ko" href="https://docs.livestyler.io/sdk/reference-swift/"/>
+    </url>
+</urlset>
