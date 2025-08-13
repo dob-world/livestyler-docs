@@ -51,6 +51,21 @@ This is the API for WebRTC communication.
 
 ### **Message Types**
 
+#### **`session_start`**
+
+(Client → Server) Sends WebRTC session start information to the server.
+```json
+{
+  "type": "session_start"
+}
+```
+
+!!! information "Session Start Information"
+    This message is used to initiate a WebRTC session. The server will respond with the necessary information to proceed with the session.
+    The following messages may be sent by the server in response:
+    - `{ "type": "node_status", "status": "pending"}`: Indicates that the server is provisioning.
+    - `{ "type": "node_status", "status": "full"}`: Indicates that the server's resources are full.
+    - `{ "type": "node_status", "status": "waiting"}`: Indicates that the server instance is ready.
 
 #### **`offer`**
 
@@ -58,9 +73,7 @@ This is the API for WebRTC communication.
 ```json
 {
   "type": "offer",
-  "payload": {
-    "data": {}
-  }
+  "sdp": "{offer sdp}"
 }
 ```
 
@@ -79,21 +92,21 @@ This is the API for WebRTC communication.
 ```json
 {
   "type": "answer",
-  "payload": {
-    "{answer data}"
-  }
+  "sdp": "{answer sdp}"
 }
 ```
 
 
-#### **`ice_candidate`**
+#### **`candidate`**
 
 (Bidirectional) Exchanges WebRTC ICE candidate information in both directions.
 ```json
 {
-  "type": "ice_candidate",
-  "payload": {
-    "{ice candidate data}"
+  "type": "candidate",
+  "candidate": {
+    "sdpMid": "{ice candidate sdpMid}",
+    "sdpMLineIndex": {ice candidate sdpMLineIndex},
+    "candidate": "{ice candidate}"
   }
 }
 ``` 

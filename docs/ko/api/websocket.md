@@ -51,6 +51,20 @@ WebRTC 통신을 위한 API입니다.
 
 ### **메시지 종류**
 
+#### **`session_start`**
+
+(클라이언트 → 서버) WebRTC 세션 시작 정보를 서버로 전송합니다.
+```json
+{
+  "type": "session_start"
+}
+```
+
+!!! information "세션 시작 정보"
+    - 서버의 인스턴스 상태에 따라 다음과 같은 메시지가 전달됩니다.
+      - `{ "type": "node_status", "status": "pending"}`: 서버가 프로비저닝 중임을 나타냅니다.
+      - `{ "type": "node_status", "status": "full"}`: 서버의 리소스가 가득 차 있음을 나타냅니다.
+      - `{ "type": "node_status", "status": "waiting"}`: 서버 인스턴스 준비가 완료된 상태를 나타냅니다.
 
 #### **`offer`**
 
@@ -58,9 +72,7 @@ WebRTC 통신을 위한 API입니다.
 ```json
 {
   "type": "offer",
-  "payload": {
-    "data": {}
-  }
+  "sdp": "{offer sdp}"
 }
 ```
 
@@ -79,21 +91,21 @@ WebRTC 통신을 위한 API입니다.
 ```json
 {
   "type": "answer",
-  "payload": {
-    "{answer data}"
-  }
+  "sdp": "{answer sdp}"
 }
 ```
 
 
-#### **`ice_candidate`**
+#### **`candidate`**
 
 (양방향) WebRTC ICE candidate 정보를 양방향으로 교환합니다.
 ```json
 {
-  "type": "ice_candidate",
-  "payload": {
-    "{ice candidate data}"
+  "type": "candidate",
+  "candidate": {
+    "sdpMid": "{ice candidate sdpMid}",
+    "sdpMLineIndex": {ice candidate sdpMLineIndex},
+    "candidate": "{ice candidate}"
   }
 }
 ```
